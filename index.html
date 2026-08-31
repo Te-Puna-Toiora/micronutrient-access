@@ -605,7 +605,10 @@
 const SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbwbxoOVkoinfugq1Is17LV7b4tENr58SVOIIglitWPzsYWqM7jIpVj7cgX1kYQMR0E/exec';
 
-const TEST_MODE = true;
+/*
+ * LIVE MODE
+ */
+const TEST_MODE = false;
 
 const TEST_EMAIL =
   'alix.harding@pg.canterbury.ac.nz';
@@ -1216,10 +1219,7 @@ function buildEmailData() {
   }
 
 
-  if (
-    !TEST_MODE &&
-    !mp.email
-  ) {
+  if (!mp.email) {
 
     throw new Error(
       'The MP contact details have not loaded correctly. Please refresh the page and try again.'
@@ -1234,37 +1234,18 @@ function buildEmailData() {
     buildPersonalSection();
 
 
-  let toAddress;
-  let ccAddress;
-  let subject;
+  const toAddress =
+    mp.email;
 
 
-  if (TEST_MODE) {
+  const ccAddress =
+    TODD_EMAIL +
+    ',' +
+    LAB_EMAIL;
 
-    toAddress =
-      TEST_EMAIL;
 
-    ccAddress =
-      TEST_EMAIL;
-
-    subject =
-      '[TEST – intended for ' +
-      mp.selection +
-      '] Constituent concern about access to micronutrient supplements';
-
-  } else {
-
-    toAddress =
-      mp.email;
-
-    ccAddress =
-      TODD_EMAIL +
-      ',' +
-      LAB_EMAIL;
-
-    subject =
-      'Constituent concern about access to micronutrient supplements';
-  }
+  const subject =
+    'Constituent concern about access to micronutrient supplements';
 
 
   const greetingName =
@@ -1732,7 +1713,6 @@ document
         /*
          * Save response to spreadsheet.
          */
-
         HTMLFormElement
           .prototype
           .submit
