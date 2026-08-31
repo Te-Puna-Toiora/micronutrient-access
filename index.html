@@ -264,7 +264,9 @@
   </p>
 
   <p>
-    Your responses will be used to prepare an email to the MP you select.
+    Your responses will be used by
+    <strong>Te Puna Toiora | Mental Health and Nutrition Research Lab</strong>
+    to prepare an email to the MP you select.
     <strong>When you submit the form, you will be given a button to open the
     prepared email in your email app.</strong> If this is not supported by your
     device, you can copy the prepared email instead.
@@ -324,6 +326,11 @@
       </label>
 
       <label class="radio-option">
+        <input type="radio" name="product" value="EMPower Plus Ultimate Sticks">
+        EMPower Plus Ultimate Sticks
+      </label>
+
+      <label class="radio-option">
         <input type="radio" name="product" value="Micronutrient supplements generally (no specific product)">
         Micronutrient supplements generally (no specific product)
       </label>
@@ -345,25 +352,34 @@
       </label>
 
       <label class="radio-option">
-        <input type="radio" name="situation"
-          value="Previously used a micronutrient supplement but can no longer access it" required>
+        <input
+          type="radio"
+          name="situation"
+          value="Previously used a micronutrient supplement but can no longer access it"
+          required>
         Previously used a micronutrient supplement but can no longer access it
       </label>
 
       <label class="radio-option">
-        <input type="radio" name="situation"
+        <input
+          type="radio"
+          name="situation"
           value="Previously used a micronutrient supplement and can still access it, but access has become more difficult">
         Previously used a micronutrient supplement and can still access it, but access has become more difficult
       </label>
 
       <label class="radio-option">
-        <input type="radio" name="situation"
+        <input
+          type="radio"
+          name="situation"
           value="Would like to try a micronutrient supplement but access has been difficult or impossible">
         Would like to try a micronutrient supplement but access has been difficult or impossible
       </label>
 
       <label class="radio-option">
-        <input type="radio" name="situation"
+        <input
+          type="radio"
+          name="situation"
           value="I have not personally used or tried to access a micronutrient supplement, but I believe they should be more accessible in New Zealand">
         I have not personally used or tried to access a micronutrient supplement,
         but I believe they should be more accessible in New Zealand
@@ -371,6 +387,7 @@
     </div>
 
     <div id="usedSection" class="hidden">
+
       <h2>Previous or current micronutrient users</h2>
 
       <div class="question">
@@ -401,9 +418,11 @@
         </label>
         <textarea id="accessImpact" name="accessImpact"></textarea>
       </div>
+
     </div>
 
     <div id="wantSection" class="hidden">
+
       <h2>For those wanting to try a micronutrient supplement</h2>
 
       <div class="question">
@@ -435,9 +454,11 @@
           how to access the supplement, or another barrier.
         </div>
       </div>
+
     </div>
 
     <div id="supportSection" class="hidden">
+
       <h2>Your perspective</h2>
 
       <div class="question">
@@ -453,6 +474,7 @@
           experiences of people you know, or the current regulatory barriers.
         </div>
       </div>
+
     </div>
 
     <div class="question">
@@ -476,11 +498,12 @@
     </div>
 
     <div class="privacy">
+
       <strong>Privacy and consent</strong>
 
       <p>
         The information you provide will be collected and held by
-        <strong>Te Puna Toiora | Mental Health and Nutrition Research Group</strong>
+        <strong>Te Puna Toiora | Mental Health and Nutrition Research Lab</strong>
         for the purpose of administering this initiative.
       </p>
 
@@ -488,7 +511,7 @@
         Your responses will be used to prepare an email addressed to the electorate
         MP you select. The prepared email will also copy
         <strong>Todd Stephenson MP</strong> and
-        <strong>Te Puna Toiora | Mental Health and Nutrition Research Group</strong>.
+        <strong>Te Puna Toiora | Mental Health and Nutrition Research Lab</strong>.
         You will have the opportunity to review the email before sending it from
         your own email account.
       </p>
@@ -513,6 +536,7 @@
         <input type="checkbox" id="consent" name="consent" required>
         <strong>I consent to my information being used and shared as described above.</strong>
       </label>
+
     </div>
 
     <button type="submit">Prepare my email</button>
@@ -553,7 +577,10 @@
           <span id="displaySubject"></span>
         </div>
 
-        <button type="button" id="copyEmailButton" class="email-button copy-button">
+        <button
+          type="button"
+          id="copyEmailButton"
+          class="email-button copy-button">
           COPY EMAIL
         </button>
 
@@ -596,113 +623,154 @@ let currentEmailData = null;
    BRANCHING
 ===================================================== */
 
-document.querySelectorAll('input[name="relation"]').forEach(function(radio) {
+document
+  .querySelectorAll('input[name="relation"]')
+  .forEach(function(radio) {
 
-  radio.addEventListener('change', function() {
+    radio.addEventListener('change', function() {
 
-    const box = document.getElementById('relationOtherBox');
-    const input = document.getElementById('relationOther');
+      const box =
+        document.getElementById('relationOtherBox');
 
-    if (this.value === 'Other') {
-      box.classList.remove('hidden');
-      input.required = true;
-    } else {
-      box.classList.add('hidden');
-      input.required = false;
-      input.value = '';
-    }
+      const input =
+        document.getElementById('relationOther');
+
+      if (this.value === 'Other') {
+
+        box.classList.remove('hidden');
+        input.required = true;
+
+      } else {
+
+        box.classList.add('hidden');
+        input.required = false;
+        input.value = '';
+      }
+    });
   });
-});
 
 
-document.querySelectorAll('input[name="product"]').forEach(function(radio) {
+document
+  .querySelectorAll('input[name="product"]')
+  .forEach(function(radio) {
 
-  radio.addEventListener('change', function() {
+    radio.addEventListener('change', function() {
 
-    const box = document.getElementById('productOtherBox');
-    const input = document.getElementById('productOther');
+      const box =
+        document.getElementById('productOtherBox');
 
-    if (this.value === 'Other') {
-      box.classList.remove('hidden');
-      input.required = true;
-    } else {
-      box.classList.add('hidden');
-      input.required = false;
-      input.value = '';
-    }
+      const input =
+        document.getElementById('productOther');
+
+      if (this.value === 'Other') {
+
+        box.classList.remove('hidden');
+        input.required = true;
+
+      } else {
+
+        box.classList.add('hidden');
+        input.required = false;
+        input.value = '';
+      }
+    });
   });
-});
 
 
-document.querySelectorAll('input[name="situation"]').forEach(function(radio) {
+document
+  .querySelectorAll('input[name="situation"]')
+  .forEach(function(radio) {
 
-  radio.addEventListener('change', function() {
+    radio.addEventListener('change', function() {
 
-    const usedSection = document.getElementById('usedSection');
-    const wantSection = document.getElementById('wantSection');
-    const supportSection = document.getElementById('supportSection');
+      const usedSection =
+        document.getElementById('usedSection');
 
-    const usedFields = [
-      document.getElementById('duration'),
-      document.getElementById('reasonUsed'),
-      document.getElementById('effect'),
-      document.getElementById('accessImpact')
-    ];
+      const wantSection =
+        document.getElementById('wantSection');
 
-    const wantFields = [
-      document.getElementById('whyInterested'),
-      document.getElementById('barrier')
-    ];
+      const supportSection =
+        document.getElementById('supportSection');
 
-    const supportFields = [
-      document.getElementById('whyAccessImportant')
-    ];
 
-    usedSection.classList.add('hidden');
-    wantSection.classList.add('hidden');
-    supportSection.classList.add('hidden');
+      const usedFields = [
+        document.getElementById('duration'),
+        document.getElementById('reasonUsed'),
+        document.getElementById('effect'),
+        document.getElementById('accessImpact')
+      ];
 
-    usedFields.forEach(function(field) {
-      field.required = false;
-      field.value = '';
-    });
 
-    wantFields.forEach(function(field) {
-      field.required = false;
-      field.value = '';
-    });
+      const wantFields = [
+        document.getElementById('whyInterested'),
+        document.getElementById('barrier')
+      ];
 
-    supportFields.forEach(function(field) {
-      field.required = false;
-      field.value = '';
-    });
 
-    if (this.value.startsWith('Previously used')) {
+      const supportFields = [
+        document.getElementById('whyAccessImportant')
+      ];
 
-      usedSection.classList.remove('hidden');
+
+      usedSection.classList.add('hidden');
+      wantSection.classList.add('hidden');
+      supportSection.classList.add('hidden');
+
 
       usedFields.forEach(function(field) {
-        field.required = true;
+        field.required = false;
+        field.value = '';
       });
 
-    } else if (this.value.startsWith('Would like to try')) {
-
-      wantSection.classList.remove('hidden');
 
       wantFields.forEach(function(field) {
-        field.required = true;
+        field.required = false;
+        field.value = '';
       });
 
-    } else if (this.value.startsWith('I have not personally used')) {
-
-      supportSection.classList.remove('hidden');
 
       supportFields.forEach(function(field) {
-        field.required = true;
+        field.required = false;
+        field.value = '';
       });
-    }
+
+
+      if (
+        this.value.startsWith('Previously used')
+      ) {
+
+        usedSection.classList.remove('hidden');
+
+        usedFields.forEach(function(field) {
+          field.required = true;
+        });
+
+      }
+
+      else if (
+        this.value.startsWith('Would like to try')
+      ) {
+
+        wantSection.classList.remove('hidden');
+
+        wantFields.forEach(function(field) {
+          field.required = true;
+        });
+
+      }
+
+      else if (
+        this.value.startsWith('I have not personally used')
+      ) {
+
+        supportSection.classList.remove('hidden');
+
+        supportFields.forEach(function(field) {
+          field.required = true;
+        });
+      }
+    });
   });
-});
 
 
 /* =====================================================
@@ -711,46 +779,72 @@ document.querySelectorAll('input[name="situation"]').forEach(function(radio) {
 
 function receiveMpOptions(mps) {
 
-  const select = document.getElementById('mpSelection');
+  const select =
+    document.getElementById('mpSelection');
 
   select.innerHTML =
     '<option value="">Choose your electorate MP</option>';
 
+
   if (!Array.isArray(mps)) {
+
     select.innerHTML =
       '<option value="">Unable to load MPs</option>';
+
     return;
   }
 
-  mpData = mps.map(function(mp) {
 
-    if (mp && typeof mp === 'object') {
+  mpData =
+    mps
+      .map(function(mp) {
 
-      return {
-        selection: String(mp.selection || '').trim(),
-        electorate: String(mp.electorate || '').trim(),
-        email: String(mp.email || '').trim(),
-        firstName: String(mp.firstName || '').trim()
-      };
-    }
+        if (
+          mp &&
+          typeof mp === 'object'
+        ) {
 
-    return null;
+          return {
 
-  }).filter(function(mp) {
-    return mp && mp.selection;
-  });
+            selection:
+              String(mp.selection || '').trim(),
+
+            electorate:
+              String(mp.electorate || '').trim(),
+
+            email:
+              String(mp.email || '').trim(),
+
+            firstName:
+              String(mp.firstName || '').trim()
+          };
+        }
+
+        return null;
+
+      })
+      .filter(function(mp) {
+        return mp && mp.selection;
+      });
+
 
   mpData.forEach(function(mp) {
 
-    const option = document.createElement('option');
+    const option =
+      document.createElement('option');
 
-    option.value = mp.selection;
-    option.textContent = mp.selection;
+    option.value =
+      mp.selection;
+
+    option.textContent =
+      mp.selection;
 
     select.appendChild(option);
   });
 
+
   if (mpData.length === 0) {
+
     select.innerHTML =
       '<option value="">Unable to load MPs</option>';
   }
@@ -759,7 +853,8 @@ function receiveMpOptions(mps) {
 
 function loadMpOptions() {
 
-  const script = document.createElement('script');
+  const script =
+    document.createElement('script');
 
   script.src =
     SCRIPT_URL +
@@ -768,13 +863,19 @@ function loadMpOptions() {
     '&t=' +
     Date.now();
 
+
   script.onerror = function() {
-    document.getElementById('mpSelection').innerHTML =
+
+    document
+      .getElementById('mpSelection')
+      .innerHTML =
       '<option value="">Unable to load MPs</option>';
   };
 
+
   document.body.appendChild(script);
 }
+
 
 loadMpOptions();
 
@@ -786,24 +887,33 @@ loadMpOptions();
 function valueOf(name) {
 
   const field =
-    document.querySelector('[name="' + name + '"]');
+    document.querySelector(
+      '[name="' + name + '"]'
+    );
 
-  return field ? field.value.trim() : '';
+  return field
+    ? field.value.trim()
+    : '';
 }
 
 
 function checkedValue(name) {
 
   const field =
-    document.querySelector('input[name="' + name + '"]:checked');
+    document.querySelector(
+      'input[name="' + name + '"]:checked'
+    );
 
-  return field ? field.value : '';
+  return field
+    ? field.value
+    : '';
 }
 
 
 function getRelation() {
 
-  const relation = checkedValue('relation');
+  const relation =
+    checkedValue('relation');
 
   if (relation === 'Other') {
     return valueOf('relationOther');
@@ -815,7 +925,8 @@ function getRelation() {
 
 function getProduct() {
 
-  const product = checkedValue('product');
+  const product =
+    checkedValue('product');
 
   if (product === 'Other') {
     return valueOf('productOther');
@@ -838,34 +949,6 @@ function productForEmail(product) {
 }
 
 
-function pronounForProduct(product) {
-
-  return product.toLowerCase().includes('supplements')
-    ? 'them'
-    : 'it';
-}
-
-
-function lowerCaseFirst(text) {
-
-  if (!text) return '';
-
-  return text.charAt(0).toLowerCase() + text.slice(1);
-}
-
-
-function finishSentence(text) {
-
-  text = String(text || '').trim();
-
-  if (!text) return '';
-
-  if (/[.!?]$/.test(text)) return text;
-
-  return text + '.';
-}
-
-
 function escapeHtml(text) {
 
   return String(text || '')
@@ -879,7 +962,8 @@ function escapeHtml(text) {
 
 function findSelectedMp() {
 
-  const selection = valueOf('mpSelection');
+  const selection =
+    valueOf('mpSelection');
 
   return mpData.find(function(mp) {
     return mp.selection === selection;
@@ -893,143 +977,226 @@ function findSelectedMp() {
 
 function buildPersonalSection() {
 
-  const relation = getRelation();
-  const product = productForEmail(getProduct());
-  const pronoun = pronounForProduct(product);
-  const situation = checkedValue('situation');
-  const anythingElse = valueOf('anythingElse');
+  const relation =
+    getRelation();
+
+  const product =
+    productForEmail(
+      getProduct()
+    );
+
+  const situation =
+    checkedValue('situation');
+
+  const anythingElse =
+    valueOf('anythingElse');
 
   let text = '';
 
+
+  /* -----------------------------------------------------
+     PREVIOUSLY USED – CAN NO LONGER ACCESS
+  ----------------------------------------------------- */
 
   if (
     situation ===
     'Previously used a micronutrient supplement but can no longer access it'
   ) {
 
-    const duration = valueOf('duration');
-    const reasonUsed = valueOf('reasonUsed');
-    const effect = valueOf('effect');
-    const impact = valueOf('accessImpact');
+    const duration =
+      valueOf('duration');
+
+    const reasonUsed =
+      valueOf('reasonUsed');
+
+    const effect =
+      valueOf('effect');
+
+    const impact =
+      valueOf('accessImpact');
+
 
     if (relation === 'Myself') {
 
       text =
         'MY EXPERIENCE\n\n' +
-        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
-        'I previously used ' + product +
-        ' for approximately ' + duration +
-        ', but can no longer access ' + pronoun +
-        '. I was using ' + pronoun +
-        ' to help with ' +
-        finishSentence(lowerCaseFirst(reasonUsed)) +
-        ' ' +
-        finishSentence(effect) +
-        '\n\nSince losing access, ' +
-        finishSentence(lowerCaseFirst(impact));
+
+        'I previously used ' +
+        product +
+        ', but can no longer access it.\n\n' +
+
+        'How long I used micronutrients:\n' +
+        duration +
+        '\n\n' +
+
+        'What I used micronutrients to help with:\n' +
+        reasonUsed +
+        '\n\n' +
+
+        'The effect they had:\n' +
+        effect +
+        '\n\n' +
+
+        'How losing access has affected me:\n' +
+        impact;
 
     } else {
 
       text =
         'MY EXPERIENCE\n\n' +
-        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
-        relation + ' previously used ' + product +
-        ' for approximately ' + duration +
-        ', but can no longer access ' + pronoun +
-        '. They were using ' + pronoun +
-        ' to help with ' +
-        finishSentence(lowerCaseFirst(reasonUsed)) +
-        ' ' +
-        finishSentence(effect) +
-        '\n\nSince losing access, ' +
-        finishSentence(lowerCaseFirst(impact));
+
+        relation +
+        ' previously used ' +
+        product +
+        ', but can no longer access it.\n\n' +
+
+        'How long they used micronutrients:\n' +
+        duration +
+        '\n\n' +
+
+        'What they used micronutrients to help with:\n' +
+        reasonUsed +
+        '\n\n' +
+
+        'The effect they had:\n' +
+        effect +
+        '\n\n' +
+
+        'How losing access has affected us:\n' +
+        impact;
     }
   }
 
+
+  /* -----------------------------------------------------
+     PREVIOUSLY USED – ACCESS MORE DIFFICULT
+  ----------------------------------------------------- */
 
   else if (
     situation ===
     'Previously used a micronutrient supplement and can still access it, but access has become more difficult'
   ) {
 
-    const duration = valueOf('duration');
-    const reasonUsed = valueOf('reasonUsed');
-    const effect = valueOf('effect');
-    const impact = valueOf('accessImpact');
+    const duration =
+      valueOf('duration');
+
+    const reasonUsed =
+      valueOf('reasonUsed');
+
+    const effect =
+      valueOf('effect');
+
+    const impact =
+      valueOf('accessImpact');
+
 
     if (relation === 'Myself') {
 
       text =
         'MY EXPERIENCE\n\n' +
-        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
-        'I have used ' + product +
-        ' for approximately ' + duration +
-        ' and can still access ' + pronoun +
-        ', but access has become more difficult. I use ' +
-        pronoun + ' to help with ' +
-        finishSentence(lowerCaseFirst(reasonUsed)) +
-        ' ' +
-        finishSentence(effect) +
-        '\n\nThe difficulties accessing ' +
-        pronoun +
-        ' have affected me in this way: ' +
-        finishSentence(impact);
+
+        'I currently use ' +
+        product +
+        ', but access has become more difficult.\n\n' +
+
+        'How long I have used micronutrients:\n' +
+        duration +
+        '\n\n' +
+
+        'What I use micronutrients to help with:\n' +
+        reasonUsed +
+        '\n\n' +
+
+        'The effect they have had:\n' +
+        effect +
+        '\n\n' +
+
+        'How difficulties accessing them have affected me:\n' +
+        impact;
 
     } else {
 
       text =
         'MY EXPERIENCE\n\n' +
-        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
-        relation + ' has used ' + product +
-        ' for approximately ' + duration +
-        ' and can still access ' + pronoun +
-        ', but access has become more difficult. They use ' +
-        pronoun + ' to help with ' +
-        finishSentence(lowerCaseFirst(reasonUsed)) +
-        ' ' +
-        finishSentence(effect) +
-        '\n\nThe difficulties accessing ' +
-        pronoun +
-        ' have affected us in this way: ' +
-        finishSentence(impact);
+
+        relation +
+        ' currently uses ' +
+        product +
+        ', but access has become more difficult.\n\n' +
+
+        'How long they have used micronutrients:\n' +
+        duration +
+        '\n\n' +
+
+        'What they use micronutrients to help with:\n' +
+        reasonUsed +
+        '\n\n' +
+
+        'The effect they have had:\n' +
+        effect +
+        '\n\n' +
+
+        'How difficulties accessing them have affected us:\n' +
+        impact;
     }
   }
 
+
+  /* -----------------------------------------------------
+     WOULD LIKE TO TRY
+  ----------------------------------------------------- */
 
   else if (
     situation ===
     'Would like to try a micronutrient supplement but access has been difficult or impossible'
   ) {
 
-    const whyInterested = valueOf('whyInterested');
-    const barrier = valueOf('barrier');
+    const whyInterested =
+      valueOf('whyInterested');
+
+    const barrier =
+      valueOf('barrier');
+
 
     if (relation === 'Myself') {
 
       text =
         'MY EXPERIENCE\n\n' +
-        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
-        'I would like to try ' + product +
-        ', but access has been difficult or impossible. I am interested in ' +
-        pronoun + ' because ' +
-        finishSentence(lowerCaseFirst(whyInterested)) +
+
+        'I would like to try ' +
+        product +
+        ', but access has been difficult or impossible.\n\n' +
+
+        'Why I am interested in accessing micronutrients:\n' +
+        whyInterested +
         '\n\n' +
-        finishSentence(barrier);
+
+        'The main barrier I have encountered is:\n' +
+        barrier;
 
     } else {
 
       text =
         'MY EXPERIENCE\n\n' +
-        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
-        relation + ' would like to try ' + product +
-        ', but access has been difficult or impossible. They are interested in ' +
-        pronoun + ' because ' +
-        finishSentence(lowerCaseFirst(whyInterested)) +
+
+        relation +
+        ' would like to try ' +
+        product +
+        ', but access has been difficult or impossible.\n\n' +
+
+        'Why we are interested in accessing micronutrients:\n' +
+        whyInterested +
         '\n\n' +
-        finishSentence(barrier);
+
+        'The main barrier we have encountered is:\n' +
+        barrier;
     }
   }
 
+
+  /* -----------------------------------------------------
+     SUPPORTER / GENERAL PERSPECTIVE
+  ----------------------------------------------------- */
 
   else if (
     situation ===
@@ -1039,19 +1206,27 @@ function buildPersonalSection() {
     const whyAccessImportant =
       valueOf('whyAccessImportant');
 
+
     text =
       'MY PERSPECTIVE\n\n' +
-      'I have not personally used or tried to access a micronutrient supplement, but I believe these products should be more accessible in New Zealand.\n\n' +
-      'One reason I believe access is important is ' +
-      finishSentence(lowerCaseFirst(whyAccessImportant));
+
+      'I have not personally used or tried to access a micronutrient supplement, but I believe they should be more accessible in New Zealand.\n\n' +
+
+      'Why I believe access to micronutrients is important:\n' +
+      whyAccessImportant;
   }
 
+
+  /* -----------------------------------------------------
+     OPTIONAL ADDITIONAL INFORMATION
+  ----------------------------------------------------- */
 
   if (anythingElse) {
 
     text +=
-      '\n\nI would also like you to know: ' +
-      finishSentence(anythingElse);
+      '\n\n' +
+      'Anything else I would like you to know:\n' +
+      anythingElse;
   }
 
 
@@ -1065,29 +1240,48 @@ function buildPersonalSection() {
 
 function buildEmailData() {
 
-  const mp = findSelectedMp();
+  const mp =
+    findSelectedMp();
+
 
   if (!mp) {
-    throw new Error('Please select your electorate MP.');
+
+    throw new Error(
+      'Please select your electorate MP.'
+    );
   }
 
-  if (!TEST_MODE && !mp.email) {
+
+  if (
+    !TEST_MODE &&
+    !mp.email
+  ) {
+
     throw new Error(
       'The MP contact details have not loaded correctly. Please refresh the page and try again.'
     );
   }
 
-  const name = valueOf('name');
-  const personalSection = buildPersonalSection();
+
+  const name =
+    valueOf('name');
+
+  const personalSection =
+    buildPersonalSection();
+
 
   let toAddress;
   let ccAddress;
   let subject;
 
+
   if (TEST_MODE) {
 
-    toAddress = TEST_EMAIL;
-    ccAddress = TEST_EMAIL;
+    toAddress =
+      TEST_EMAIL;
+
+    ccAddress =
+      TEST_EMAIL;
 
     subject =
       '[TEST – intended for ' +
@@ -1096,17 +1290,22 @@ function buildEmailData() {
 
   } else {
 
-    toAddress = mp.email;
+    toAddress =
+      mp.email;
 
     ccAddress =
-      TODD_EMAIL + ',' + LAB_EMAIL;
+      TODD_EMAIL +
+      ',' +
+      LAB_EMAIL;
 
     subject =
       'Constituent concern about access to micronutrient supplements';
   }
 
+
   const greetingName =
-    mp.firstName || 'there';
+    mp.firstName ||
+    'there';
 
 
   const body =
@@ -1140,14 +1339,109 @@ ${name}`;
 
 
   return {
-    to: toAddress,
-    cc: ccAddress,
-    subject: subject,
-    body: body,
-    name: name,
-    greetingName: greetingName,
-    personalSection: personalSection
+
+    to:
+      toAddress,
+
+    cc:
+      ccAddress,
+
+    subject:
+      subject,
+
+    body:
+      body,
+
+    name:
+      name,
+
+    greetingName:
+      greetingName,
+
+    personalSection:
+      personalSection
   };
+}
+
+
+/* =====================================================
+   PERSONAL SECTION → HTML
+===================================================== */
+
+function paragraphsToHtml(text) {
+
+  const parts =
+    String(text || '')
+      .split(/\n\n+/);
+
+
+  return parts
+    .map(function(part) {
+
+      const lines =
+        part.split('\n');
+
+      const firstLine =
+        lines[0] || '';
+
+      const remainingText =
+        lines
+          .slice(1)
+          .join('\n');
+
+
+      const isMainHeading =
+        firstLine === 'MY EXPERIENCE' ||
+        firstLine === 'MY PERSPECTIVE';
+
+
+      const isResponseLabel =
+        firstLine.endsWith(':');
+
+
+      if (isMainHeading) {
+
+        return (
+          '<p><strong>' +
+          escapeHtml(firstLine) +
+          '</strong></p>'
+        );
+      }
+
+
+      if (isResponseLabel) {
+
+        let result =
+          '<p><strong>' +
+          escapeHtml(firstLine) +
+          '</strong>';
+
+
+        if (remainingText) {
+
+          result +=
+            '<br>' +
+            escapeHtml(remainingText)
+              .replace(/\n/g, '<br>');
+        }
+
+
+        result +=
+          '</p>';
+
+
+        return result;
+      }
+
+
+      return (
+        '<p>' +
+        escapeHtml(part)
+          .replace(/\n/g, '<br>') +
+        '</p>'
+      );
+    })
+    .join('');
 }
 
 
@@ -1155,38 +1449,20 @@ ${name}`;
    HTML EMAIL
 ===================================================== */
 
-function paragraphsToHtml(text) {
-
-  const parts =
-    String(text || '').split(/\n\n+/);
-
-  return parts.map(function(part) {
-
-    const safe =
-      escapeHtml(part).replace(/\n/g, '<br>');
-
-    if (
-      part === 'MY EXPERIENCE' ||
-      part === 'MY PERSPECTIVE'
-    ) {
-      return '<p><strong>' + safe + '</strong></p>';
-    }
-
-    return '<p>' + safe + '</p>';
-
-  }).join('');
-}
-
-
 function buildHtmlEmail(data) {
 
   const personalHtml =
-    paragraphsToHtml(data.personalSection);
+    paragraphsToHtml(
+      data.personalSection
+    );
+
 
   return `
 <div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#000;">
 
-<p>Kia ora ${escapeHtml(data.greetingName)},</p>
+<p>
+Kia ora ${escapeHtml(data.greetingName)},
+</p>
 
 <p>
 My name is ${escapeHtml(data.name)}. I am writing to you as my local electorate MP about barriers to accessing micronutrient supplements in New Zealand.
@@ -1201,21 +1477,25 @@ This creates significant barriers to access and funding. Formulations that fall 
 </p>
 
 <p>
-<strong>This means an intervention recommended by Pharmac's own clinical advisory committee remains ineligible for public funding because of its regulatory classification rather than its evidence base.</strong>
+<strong>
+This means an intervention recommended by Pharmac's own clinical advisory committee remains ineligible for public funding because of its regulatory classification rather than its evidence base.
+</strong>
 </p>
 
 ${personalHtml}
 
-<p><strong>WHAT YOU CAN DO TO HELP</strong></p>
+<p>
+<strong>WHAT YOU CAN DO TO HELP</strong>
+</p>
 
 <p>
 I am asking you, as my electorate MP, to support changes that would remove these unnecessary barriers. Specifically:
 </p>
 
 <ul>
-<li>Revise the Dietary Supplements Regulations 1985.</li>
-<li>Increase or remove outdated maximum permitted doses for micronutrients where appropriate.</li>
-<li>Create a pathway to Pharmac funding that does not require effective micronutrient supplements to first be classified as medicines.</li>
+  <li>Revise the Dietary Supplements Regulations 1985.</li>
+  <li>Increase or remove outdated maximum permitted doses for micronutrients where appropriate.</li>
+  <li>Create a pathway to Pharmac funding that does not require effective micronutrient supplements to first be classified as medicines.</li>
 </ul>
 
 <p>
@@ -1255,15 +1535,21 @@ function buildMailto(data) {
 
 
 /* =====================================================
-   COPY RICH EMAIL
+   COPY EMAIL
 ===================================================== */
 
 async function copyPreparedEmail() {
 
-  if (!currentEmailData) return;
+  if (!currentEmailData) {
+    return;
+  }
+
 
   const status =
-    document.getElementById('copyStatus');
+    document.getElementById(
+      'copyStatus'
+    );
+
 
   const plainText =
 `To: ${currentEmailData.to}
@@ -1274,16 +1560,33 @@ ${currentEmailData.body}`;
 
 
   const htmlBody =
-    buildHtmlEmail(currentEmailData);
+    buildHtmlEmail(
+      currentEmailData
+    );
 
 
   const htmlText =
 `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#000;">
-<p><strong>To:</strong> ${escapeHtml(currentEmailData.to)}</p>
-<p><strong>CC:</strong> ${escapeHtml(currentEmailData.cc)}</p>
-<p><strong>Subject:</strong> ${escapeHtml(currentEmailData.subject)}</p>
+
+<p>
+<strong>To:</strong>
+${escapeHtml(currentEmailData.to)}
+</p>
+
+<p>
+<strong>CC:</strong>
+${escapeHtml(currentEmailData.cc)}
+</p>
+
+<p>
+<strong>Subject:</strong>
+${escapeHtml(currentEmailData.subject)}
+</p>
+
 <br>
+
 ${htmlBody}
+
 </div>`;
 
 
@@ -1300,20 +1603,28 @@ ${htmlBody}
           'text/plain':
             new Blob(
               [plainText],
-              { type: 'text/plain' }
+              {
+                type:
+                  'text/plain'
+              }
             ),
 
           'text/html':
             new Blob(
               [htmlText],
-              { type: 'text/html' }
+              {
+                type:
+                  'text/html'
+              }
             )
         });
 
 
-      await navigator.clipboard.write([
-        item
-      ]);
+      await navigator
+        .clipboard
+        .write([
+          item
+        ]);
 
 
       status.textContent =
@@ -1322,32 +1633,38 @@ ${htmlBody}
       return;
     }
 
+
     throw new Error(
       'Rich clipboard not supported'
     );
 
   } catch (error) {
 
-    /*
-     * Fallback: copy plain text.
-     */
 
     try {
 
-      await navigator.clipboard.writeText(
-        plainText
-      );
+      await navigator
+        .clipboard
+        .writeText(
+          plainText
+        );
+
 
       status.textContent =
         'Copied! Paste it into a new email.';
 
     } catch (secondError) {
 
+
       const temp =
-        document.createElement('textarea');
+        document.createElement(
+          'textarea'
+        );
+
 
       temp.value =
         plainText;
+
 
       temp.style.position =
         'fixed';
@@ -1355,20 +1672,25 @@ ${htmlBody}
       temp.style.opacity =
         '0';
 
+
       document.body.appendChild(
         temp
       );
 
+
       temp.focus();
       temp.select();
+
 
       document.execCommand(
         'copy'
       );
 
+
       document.body.removeChild(
         temp
       );
+
 
       status.textContent =
         'Copied! Paste it into a new email.';
@@ -1378,7 +1700,9 @@ ${htmlBody}
 
 
 document
-  .getElementById('copyEmailButton')
+  .getElementById(
+    'copyEmailButton'
+  )
   .addEventListener(
     'click',
     copyPreparedEmail
@@ -1390,111 +1714,152 @@ document
 ===================================================== */
 
 document
-  .getElementById('advocacyForm')
-  .addEventListener('submit', function(event) {
+  .getElementById(
+    'advocacyForm'
+  )
+  .addEventListener(
+    'submit',
+    function(event) {
 
-    event.preventDefault();
+      event.preventDefault();
 
-    const form =
-      this;
 
-    if (!form.reportValidity()) {
-      return;
-    }
+      const form =
+        this;
 
-    const status =
-      document.getElementById('status');
 
-    const emailReady =
-      document.getElementById('emailReady');
+      if (
+        !form.reportValidity()
+      ) {
+        return;
+      }
 
-    try {
 
-      currentEmailData =
-        buildEmailData();
-
-      const mailto =
-        buildMailto(
-          currentEmailData
+      const status =
+        document.getElementById(
+          'status'
         );
 
 
-      /*
-       * Save response to spreadsheet.
-       */
-
-      HTMLFormElement.prototype.submit.call(
-        form
-      );
-
-
-      /*
-       * Populate result.
-       */
-
-      document
-        .getElementById('openEmailButton')
-        .href =
-        mailto;
-
-
-      document
-        .getElementById('displayTo')
-        .textContent =
-        currentEmailData.to;
-
-
-      document
-        .getElementById('displayCc')
-        .textContent =
-        currentEmailData.cc;
-
-
-      document
-        .getElementById('displaySubject')
-        .textContent =
-        currentEmailData.subject;
-
-
-      document
-        .getElementById('displayBody')
-        .innerHTML =
-        buildHtmlEmail(
-          currentEmailData
+      const emailReady =
+        document.getElementById(
+          'emailReady'
         );
 
 
-      document
-        .getElementById('copyStatus')
-        .textContent =
-        '';
+      try {
+
+        currentEmailData =
+          buildEmailData();
 
 
-      status.textContent =
-        '';
+        const mailto =
+          buildMailto(
+            currentEmailData
+          );
 
 
-      emailReady.classList.remove(
-        'hidden'
-      );
+        /*
+         * Save response to spreadsheet.
+         */
+
+        HTMLFormElement
+          .prototype
+          .submit
+          .call(form);
 
 
-      emailReady.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+        /*
+         * Populate prepared email.
+         */
 
-    } catch (error) {
+        document
+          .getElementById(
+            'openEmailButton'
+          )
+          .href =
+          mailto;
 
-      emailReady.classList.add(
-        'hidden'
-      );
 
-      status.textContent =
-        error.message ||
-        'Something went wrong while preparing your email. Please try again.';
+        document
+          .getElementById(
+            'displayTo'
+          )
+          .textContent =
+          currentEmailData.to;
+
+
+        document
+          .getElementById(
+            'displayCc'
+          )
+          .textContent =
+          currentEmailData.cc;
+
+
+        document
+          .getElementById(
+            'displaySubject'
+          )
+          .textContent =
+          currentEmailData.subject;
+
+
+        document
+          .getElementById(
+            'displayBody'
+          )
+          .innerHTML =
+          buildHtmlEmail(
+            currentEmailData
+          );
+
+
+        document
+          .getElementById(
+            'copyStatus'
+          )
+          .textContent =
+          '';
+
+
+        status.textContent =
+          '';
+
+
+        emailReady
+          .classList
+          .remove(
+            'hidden'
+          );
+
+
+        emailReady
+          .scrollIntoView({
+
+            behavior:
+              'smooth',
+
+            block:
+              'start'
+          });
+
+      } catch (error) {
+
+
+        emailReady
+          .classList
+          .add(
+            'hidden'
+          );
+
+
+        status.textContent =
+          error.message ||
+          'Something went wrong while preparing your email. Please try again.';
+      }
     }
-  });
+  );
 
 </script>
 
