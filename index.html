@@ -177,12 +177,9 @@
         padding: 22px 18px;
       }
 
-      .email-button {
-        display: block;
-        width: 100%;
-      }
-
+      .email-button,
       button {
+        display: block;
         width: 100%;
       }
     }
@@ -230,7 +227,6 @@
     Research Group copied.
   </p>
 
-
   <form
     id="advocacyForm"
     method="post"
@@ -239,61 +235,37 @@
 
     <h2>About you</h2>
 
-
     <div class="question">
-
-      <label class="question-label" for="name">
-        Your name *
-      </label>
-
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required>
-
+      <label class="question-label" for="name">Your name *</label>
+      <input type="text" id="name" name="name" required>
     </div>
 
-
     <div class="question">
-
       <label class="question-label">
         Who does your interest in accessing micronutrient supplements relate to? *
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="relation"
-          value="Myself"
-          required>
+        <input type="radio" name="relation" value="Myself" required>
         Myself
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="relation"
-          value="My child">
+        <input type="radio" name="relation" value="My child">
         My child
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="relation"
-          value="Other">
+        <input type="radio" name="relation" value="Other">
         Other
       </label>
 
       <div id="relationOtherBox" class="hidden">
-
         <input
           type="text"
           id="relationOther"
           name="relationOther"
           placeholder="Please specify">
-
       </div>
 
       <div class="help">
@@ -302,12 +274,9 @@
           you have their permission to share their personal information.
         </strong>
       </div>
-
     </div>
 
-
     <div class="question">
-
       <label class="question-label">
         Which micronutrient supplement does this relate to? *
       </label>
@@ -330,28 +299,20 @@
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="product"
-          value="Other">
+        <input type="radio" name="product" value="Other">
         Other
       </label>
 
       <div id="productOtherBox" class="hidden">
-
         <input
           type="text"
           id="productOther"
           name="productOther"
           placeholder="Please specify">
-
       </div>
-
     </div>
 
-
     <div class="question">
-
       <label class="question-label">
         Which best describes the situation regarding micronutrient supplements
         for you or the person you're completing this form for? *
@@ -371,8 +332,7 @@
           type="radio"
           name="situation"
           value="Previously used a micronutrient supplement and can still access it, but access has become more difficult">
-        Previously used a micronutrient supplement and can still access it, but
-        access has become more difficult
+        Previously used a micronutrient supplement and can still access it, but access has become more difficult
       </label>
 
       <label class="radio-option">
@@ -380,8 +340,7 @@
           type="radio"
           name="situation"
           value="Would like to try a micronutrient supplement but access has been difficult or impossible">
-        Would like to try a micronutrient supplement but access has been difficult
-        or impossible
+        Would like to try a micronutrient supplement but access has been difficult or impossible
       </label>
 
       <label class="radio-option">
@@ -392,84 +351,51 @@
         I have not personally used or tried to access a micronutrient supplement,
         but I believe they should be more accessible in New Zealand
       </label>
-
     </div>
 
-
     <div id="usedSection" class="hidden">
-
       <h2>Previous or current micronutrient users</h2>
 
       <div class="question">
-
         <label class="question-label" for="duration">
           For approximately how long has the micronutrient supplement been used? *
         </label>
-
-        <input
-          type="text"
-          id="duration"
-          name="duration">
-
+        <input type="text" id="duration" name="duration">
       </div>
 
-
       <div class="question">
-
         <label class="question-label" for="reasonUsed">
           What was the micronutrient supplement being used to help with? *
         </label>
-
-        <textarea
-          id="reasonUsed"
-          name="reasonUsed"></textarea>
-
+        <textarea id="reasonUsed" name="reasonUsed"></textarea>
       </div>
 
-
       <div class="question">
-
         <label class="question-label" for="effect">
           What effect, if any, did the micronutrient supplement have? *
         </label>
-
-        <textarea
-          id="effect"
-          name="effect"></textarea>
-
+        <textarea id="effect" name="effect"></textarea>
       </div>
 
-
       <div class="question">
-
         <label class="question-label" for="accessImpact">
           How have changes or difficulties accessing the micronutrient supplement
           affected you or someone you care about? *
         </label>
-
-        <textarea
-          id="accessImpact"
-          name="accessImpact"></textarea>
-
+        <textarea id="accessImpact" name="accessImpact"></textarea>
       </div>
-
     </div>
 
-
     <div id="wantSection" class="hidden">
-
       <h2>For those wanting to try a micronutrient supplement</h2>
 
       <div class="question">
-
         <label class="question-label" for="whyInterested">
           Why are you interested in accessing a micronutrient supplement, and
           what are you hoping it might help with? *
         </label>
 
-        <textarea
-          id="whyInterested"
-          name="whyInterested"></textarea>
+        <textarea id="whyInterested" name="whyInterested"></textarea>
 
         <div class="help">
           For example, you may have learned about relevant research, had a
@@ -477,98 +403,67 @@
           with other treatment options, or be looking for additional ways to
           support your own or someone else's wellbeing.
         </div>
-
       </div>
 
-
       <div class="question">
-
         <label class="question-label" for="barrier">
           What has prevented or made it difficult to access the micronutrient
           supplement? *
         </label>
 
-        <textarea
-          id="barrier"
-          name="barrier"></textarea>
+        <textarea id="barrier" name="barrier"></textarea>
 
         <div class="help">
           For example, difficulty finding a prescriber, cost, uncertainty about
           how to access the supplement, or another barrier.
         </div>
-
       </div>
-
     </div>
 
-
     <div id="supportSection" class="hidden">
-
       <h2>Your perspective</h2>
 
       <div class="question">
-
         <label class="question-label" for="whyAccessImportant">
           Why do you believe access to micronutrient supplements is important? *
         </label>
 
-        <textarea
-          id="whyAccessImportant"
-          name="whyAccessImportant"></textarea>
+        <textarea id="whyAccessImportant" name="whyAccessImportant"></textarea>
 
         <div class="help">
           For example, you may wish to comment on people's ability to make informed
           choices about their health, access to evidence-based options, the
           experiences of people you know, or the current regulatory barriers.
         </div>
-
       </div>
-
     </div>
 
-
     <div class="question">
-
       <label class="question-label" for="anythingElse">
         Is there anything else you would like your MP to know?
       </label>
 
-      <textarea
-        id="anythingElse"
-        name="anythingElse"></textarea>
+      <textarea id="anythingElse" name="anythingElse"></textarea>
 
       <div class="help">
         You can add anything else about your experience, the experience of someone
         you care about, or why access to micronutrient supplements matters to you.
       </div>
-
     </div>
-
 
     <h2>Your electorate MP</h2>
 
     <div class="question">
-
       <label class="question-label" for="mpSelection">
         Select your local electorate MP *
       </label>
 
-      <select
-        id="mpSelection"
-        name="mpSelection"
-        required>
-
-        <option value="">
-          Loading MPs...
-        </option>
-
+      <select id="mpSelection" name="mpSelection" required>
+        <option value="">Loading MPs...</option>
       </select>
-
     </div>
 
-
     <div class="privacy">
-
       <strong>Privacy and consent</strong>
 
       <p>
@@ -588,18 +483,13 @@
 
       <p>
         Providing your information is voluntary. If you prefer not to provide your
-        information through this form, you can contact your electorate MP directly
-        instead.
-        <strong>
-          Please only provide information that you are comfortable sharing with
-          these recipients.
-        </strong>
+        information through this form, you can contact your electorate MP directly instead.
+        <strong>Please only provide information that you are comfortable sharing with these recipients.</strong>
       </p>
 
       <p>
         You can request access to, or correction of, information held about you by
-        contacting
-        <strong>mentalhealthnutrition@canterbury.ac.nz</strong>.
+        contacting <strong>mentalhealthnutrition@canterbury.ac.nz</strong>.
       </p>
 
       <p>
@@ -610,36 +500,19 @@
       </p>
 
       <label class="consent-label">
-
-        <input
-          type="checkbox"
-          id="consent"
-          name="consent"
-          required>
+        <input type="checkbox" id="consent" name="consent" required>
 
         <strong>
           I consent to my information being used and shared as described above.
         </strong>
-
       </label>
-
     </div>
 
-
-    <button
-      type="submit"
-      id="submitButton">
-      Prepare my email
-    </button>
-
+    <button type="submit" id="submitButton">Prepare my email</button>
 
     <div id="status"></div>
 
-
-    <div
-      id="emailReady"
-      class="hidden">
-
+    <div id="emailReady" class="hidden">
       <h2>Your email is ready</h2>
 
       <p>
@@ -653,501 +526,836 @@
         href="#">
         OPEN MY PREPARED EMAIL
       </a>
-
     </div>
 
   </form>
 
-
-  <iframe
-    id="submissionFrame"
-    name="submissionFrame">
-  </iframe>
+  <iframe id="submissionFrame" name="submissionFrame"></iframe>
 
 </div>
 
-
 <script>
 
-  const SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbwbxoOVkoinfugq1Is17LV7b4tENr58SVOIIglitWPzsYWqM7jIpVj7cgX1kYQMR0E/exec';
+const SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbwbxoOVkoinfugq1Is17LV7b4tENr58SVOIIglitWPzsYWqM7jIpVj7cgX1kYQMR0E/exec';
 
+const TEST_MODE = true;
 
-  /*
-  =========================================================
-  RELATIONSHIP BRANCHING
-  =========================================================
-  */
+const TEST_EMAIL =
+  'alix.harding@pg.canterbury.ac.nz';
 
-  document
-    .querySelectorAll('input[name="relation"]')
-    .forEach(function(radio) {
+const TODD_EMAIL =
+  'Todd.Stephenson@parliament.govt.nz';
 
-      radio.addEventListener(
-        'change',
-        function() {
+const LAB_EMAIL =
+  'mentalhealthnutrition@canterbury.ac.nz';
 
-          const box =
-            document.getElementById(
-              'relationOtherBox'
-            );
+let mpData = [];
 
-          const input =
-            document.getElementById(
-              'relationOther'
-            );
 
+/*
+=========================================================
+RELATIONSHIP BRANCHING
+=========================================================
+*/
 
-          if (this.value === 'Other') {
+document
+  .querySelectorAll('input[name="relation"]')
+  .forEach(function(radio) {
 
-            box.classList.remove('hidden');
+    radio.addEventListener('change', function() {
 
-            input.required =
-              true;
+      const box =
+        document.getElementById('relationOtherBox');
 
-          } else {
+      const input =
+        document.getElementById('relationOther');
 
-            box.classList.add('hidden');
+      if (this.value === 'Other') {
 
-            input.required =
-              false;
+        box.classList.remove('hidden');
+        input.required = true;
 
-            input.value =
-              '';
-          }
-        }
-      );
-    });
+      } else {
 
-
-  /*
-  =========================================================
-  PRODUCT BRANCHING
-  =========================================================
-  */
-
-  document
-    .querySelectorAll('input[name="product"]')
-    .forEach(function(radio) {
-
-      radio.addEventListener(
-        'change',
-        function() {
-
-          const box =
-            document.getElementById(
-              'productOtherBox'
-            );
-
-          const input =
-            document.getElementById(
-              'productOther'
-            );
-
-
-          if (this.value === 'Other') {
-
-            box.classList.remove('hidden');
-
-            input.required =
-              true;
-
-          } else {
-
-            box.classList.add('hidden');
-
-            input.required =
-              false;
-
-            input.value =
-              '';
-          }
-        }
-      );
-    });
-
-
-  /*
-  =========================================================
-  SITUATION BRANCHING
-  =========================================================
-  */
-
-  document
-    .querySelectorAll('input[name="situation"]')
-    .forEach(function(radio) {
-
-      radio.addEventListener(
-        'change',
-        function() {
-
-          const usedSection =
-            document.getElementById(
-              'usedSection'
-            );
-
-          const wantSection =
-            document.getElementById(
-              'wantSection'
-            );
-
-          const supportSection =
-            document.getElementById(
-              'supportSection'
-            );
-
-
-          const usedFields = [
-            document.getElementById(
-              'duration'
-            ),
-            document.getElementById(
-              'reasonUsed'
-            ),
-            document.getElementById(
-              'effect'
-            ),
-            document.getElementById(
-              'accessImpact'
-            )
-          ];
-
-
-          const wantFields = [
-            document.getElementById(
-              'whyInterested'
-            ),
-            document.getElementById(
-              'barrier'
-            )
-          ];
-
-
-          const supportFields = [
-            document.getElementById(
-              'whyAccessImportant'
-            )
-          ];
-
-
-          usedSection.classList.add(
-            'hidden'
-          );
-
-          wantSection.classList.add(
-            'hidden'
-          );
-
-          supportSection.classList.add(
-            'hidden'
-          );
-
-
-          usedFields.forEach(
-            function(field) {
-
-              field.required =
-                false;
-
-              field.value =
-                '';
-            }
-          );
-
-
-          wantFields.forEach(
-            function(field) {
-
-              field.required =
-                false;
-
-              field.value =
-                '';
-            }
-          );
-
-
-          supportFields.forEach(
-            function(field) {
-
-              field.required =
-                false;
-
-              field.value =
-                '';
-            }
-          );
-
-
-          if (
-            this.value.startsWith(
-              'Previously used'
-            )
-          ) {
-
-            usedSection.classList.remove(
-              'hidden'
-            );
-
-            usedFields.forEach(
-              function(field) {
-
-                field.required =
-                  true;
-              }
-            );
-
-          } else if (
-            this.value.startsWith(
-              'Would like to try'
-            )
-          ) {
-
-            wantSection.classList.remove(
-              'hidden'
-            );
-
-            wantFields.forEach(
-              function(field) {
-
-                field.required =
-                  true;
-              }
-            );
-
-          } else if (
-            this.value.startsWith(
-              'I have not personally used'
-            )
-          ) {
-
-            supportSection.classList.remove(
-              'hidden'
-            );
-
-            supportFields.forEach(
-              function(field) {
-
-                field.required =
-                  true;
-              }
-            );
-          }
-        }
-      );
-    });
-
-
-  /*
-  =========================================================
-  LOAD MP OPTIONS
-  =========================================================
-  */
-
-
-  function receiveMpOptions(mps) {
-
-    const select =
-      document.getElementById(
-        'mpSelection'
-      );
-
-
-    select.innerHTML =
-      '<option value="">Choose your electorate MP</option>';
-
-
-    mps.forEach(
-      function(mp) {
-
-        const option =
-          document.createElement(
-            'option'
-          );
-
-        option.value =
-          mp;
-
-        option.textContent =
-          mp;
-
-        select.appendChild(
-          option
-        );
+        box.classList.add('hidden');
+        input.required = false;
+        input.value = '';
       }
-    );
-  }
+    });
+  });
 
 
-  function loadMpOptions() {
+/*
+=========================================================
+PRODUCT BRANCHING
+=========================================================
+*/
 
-    const script =
-      document.createElement(
-        'script'
-      );
+document
+  .querySelectorAll('input[name="product"]')
+  .forEach(function(radio) {
 
+    radio.addEventListener('change', function() {
 
-    script.src =
-      SCRIPT_URL +
-      '?mode=mpOptions&callback=receiveMpOptions';
+      const box =
+        document.getElementById('productOtherBox');
 
+      const input =
+        document.getElementById('productOther');
 
-    script.onerror =
-      function() {
+      if (this.value === 'Other') {
 
-        document
-          .getElementById(
-            'mpSelection'
-          )
-          .innerHTML =
-          '<option value="">Unable to load MPs</option>';
-      };
+        box.classList.remove('hidden');
+        input.required = true;
 
+      } else {
 
-    document.body.appendChild(
-      script
-    );
-  }
-
-
-  loadMpOptions();
-
-
-  /*
-  =========================================================
-  SUBMISSION RESPONSE FROM APPS SCRIPT
-  =========================================================
-  */
-
-
-  window.addEventListener(
-    'message',
-    function(event) {
-
-      const button =
-        document.getElementById(
-          'submitButton'
-        );
-
-      const status =
-        document.getElementById(
-          'status'
-        );
-
-      const emailReady =
-        document.getElementById(
-          'emailReady'
-        );
-
-      const openEmailButton =
-        document.getElementById(
-          'openEmailButton'
-        );
-
-
-      if (
-        !event.data ||
-        typeof event.data !== 'object'
-      ) {
-
-        return;
+        box.classList.add('hidden');
+        input.required = false;
+        input.value = '';
       }
+    });
+  });
 
 
-      button.disabled =
-        false;
+/*
+=========================================================
+SITUATION BRANCHING
+=========================================================
+*/
 
-      button.textContent =
-        'Prepare my email';
+document
+  .querySelectorAll('input[name="situation"]')
+  .forEach(function(radio) {
 
+    radio.addEventListener('change', function() {
 
-      if (
-        event.data.success &&
-        event.data.mailtoUrl
-      ) {
+      const usedSection =
+        document.getElementById('usedSection');
 
-        status.textContent =
-          '';
+      const wantSection =
+        document.getElementById('wantSection');
 
+      const supportSection =
+        document.getElementById('supportSection');
 
-        openEmailButton.href =
-          event.data.mailtoUrl;
+      const usedFields = [
+        document.getElementById('duration'),
+        document.getElementById('reasonUsed'),
+        document.getElementById('effect'),
+        document.getElementById('accessImpact')
+      ];
 
+      const wantFields = [
+        document.getElementById('whyInterested'),
+        document.getElementById('barrier')
+      ];
 
-        emailReady.classList.remove(
-          'hidden'
-        );
+      const supportFields = [
+        document.getElementById('whyAccessImportant')
+      ];
 
+      usedSection.classList.add('hidden');
+      wantSection.classList.add('hidden');
+      supportSection.classList.add('hidden');
 
-        emailReady.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
+      usedFields.forEach(function(field) {
+        field.required = false;
+        field.value = '';
+      });
+
+      wantFields.forEach(function(field) {
+        field.required = false;
+        field.value = '';
+      });
+
+      supportFields.forEach(function(field) {
+        field.required = false;
+        field.value = '';
+      });
+
+      if (this.value.startsWith('Previously used')) {
+
+        usedSection.classList.remove('hidden');
+
+        usedFields.forEach(function(field) {
+          field.required = true;
         });
 
-      } else if (
-        event.data.success === false
-      ) {
+      } else if (this.value.startsWith('Would like to try')) {
 
-        emailReady.classList.add(
-          'hidden'
-        );
+        wantSection.classList.remove('hidden');
 
+        wantFields.forEach(function(field) {
+          field.required = true;
+        });
 
-        status.textContent =
-          event.data.error ||
-          'Something went wrong while preparing your email. Please try again.';
+      } else if (this.value.startsWith('I have not personally used')) {
+
+        supportSection.classList.remove('hidden');
+
+        supportFields.forEach(function(field) {
+          field.required = true;
+        });
       }
-    }
-  );
+    });
+  });
+
+
+/*
+=========================================================
+LOAD MPs
+=========================================================
+*/
+
+function receiveMpOptions(mps) {
+
+  mpData = Array.isArray(mps)
+    ? mps
+    : [];
+
+  const select =
+    document.getElementById('mpSelection');
+
+  select.innerHTML =
+    '<option value="">Choose your electorate MP</option>';
+
+  mpData.forEach(function(mp) {
+
+    const option =
+      document.createElement('option');
+
+    option.value =
+      mp.selection;
+
+    option.textContent =
+      mp.selection;
+
+    select.appendChild(option);
+  });
+}
+
+
+function loadMpOptions() {
+
+  const script =
+    document.createElement('script');
+
+  script.src =
+    SCRIPT_URL +
+    '?mode=mpOptions&callback=receiveMpOptions';
+
+  script.onerror = function() {
+
+    document
+      .getElementById('mpSelection')
+      .innerHTML =
+      '<option value="">Unable to load MPs</option>';
+  };
+
+  document.body.appendChild(script);
+}
+
+loadMpOptions();
+
+
+/*
+=========================================================
+HELPERS
+=========================================================
+*/
+
+function valueOf(name) {
+
+  const field =
+    document.querySelector(
+      '[name="' + name + '"]'
+    );
+
+  return field
+    ? field.value.trim()
+    : '';
+}
+
+
+function checkedValue(name) {
+
+  const field =
+    document.querySelector(
+      'input[name="' +
+      name +
+      '"]:checked'
+    );
+
+  return field
+    ? field.value
+    : '';
+}
+
+
+function getRelation() {
+
+  const relation =
+    checkedValue('relation');
+
+  if (relation === 'Other') {
+
+    return valueOf('relationOther');
+  }
+
+  return relation;
+}
+
+
+function getProduct() {
+
+  const product =
+    checkedValue('product');
+
+  if (product === 'Other') {
+
+    return valueOf('productOther');
+  }
+
+  return product;
+}
+
+
+function productForEmail(product) {
+
+  if (
+    product ===
+    'Micronutrient supplements generally (no specific product)'
+  ) {
+
+    return 'micronutrient supplements';
+  }
+
+  return product;
+}
+
+
+function pronounForProduct(product) {
+
+  return product.toLowerCase().includes('supplements')
+    ? 'them'
+    : 'it';
+}
+
+
+function lowerCaseFirst(text) {
+
+  if (!text) {
+    return '';
+  }
+
+  return text.charAt(0).toLowerCase() +
+    text.slice(1);
+}
+
+
+function finishSentence(text) {
+
+  text =
+    String(text || '').trim();
+
+  if (!text) {
+    return '';
+  }
+
+  if (/[.!?]$/.test(text)) {
+    return text;
+  }
+
+  return text + '.';
+}
+
+
+function findSelectedMp() {
+
+  const selection =
+    valueOf('mpSelection');
+
+  return mpData.find(function(mp) {
+
+    return mp.selection === selection;
+  });
+}
+
+
+/*
+=========================================================
+BUILD PERSONAL STORY
+=========================================================
+*/
+
+function buildPersonalSection() {
+
+  const relation =
+    getRelation();
+
+  const productRaw =
+    getProduct();
+
+  const product =
+    productForEmail(productRaw);
+
+  const pronoun =
+    pronounForProduct(product);
+
+  const situation =
+    checkedValue('situation');
+
+  const anythingElse =
+    valueOf('anythingElse');
+
+  let text = '';
 
 
   /*
-  =========================================================
-  FORM SUBMISSION
-  =========================================================
+  PREVIOUS USER - NO LONGER ACCESS
   */
 
+  if (
+    situation ===
+    'Previously used a micronutrient supplement but can no longer access it'
+  ) {
 
-  document
-    .getElementById(
-      'advocacyForm'
-    )
-    .addEventListener(
-      'submit',
-      function() {
+    const duration =
+      valueOf('duration');
 
-        const button =
-          document.getElementById(
-            'submitButton'
-          );
+    const reasonUsed =
+      valueOf('reasonUsed');
 
-        const status =
-          document.getElementById(
-            'status'
-          );
+    const effect =
+      valueOf('effect');
 
-        const emailReady =
-          document.getElementById(
-            'emailReady'
-          );
+    const impact =
+      valueOf('accessImpact');
 
 
-        button.disabled =
-          true;
+    if (relation === 'Myself') {
 
-        button.textContent =
-          'Preparing email...';
+      text +=
+        'MY EXPERIENCE\n\n' +
+        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
 
+        'I previously used ' +
+        product +
+        ' for approximately ' +
+        duration +
+        ', but can no longer access ' +
+        pronoun +
+        '. I was using ' +
+        pronoun +
+        ' to help with ' +
+        finishSentence(
+          lowerCaseFirst(reasonUsed)
+        ) +
+        ' ' +
+        finishSentence(effect) +
+        '\n\n' +
 
-        status.textContent =
-          'Preparing your email...';
-
-
-        emailReady.classList.add(
-          'hidden'
+        'Since losing access, ' +
+        finishSentence(
+          lowerCaseFirst(impact)
         );
-      }
+
+    } else {
+
+      text +=
+        'MY EXPERIENCE\n\n' +
+        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
+
+        relation +
+        ' previously used ' +
+        product +
+        ' for approximately ' +
+        duration +
+        ', but can no longer access ' +
+        pronoun +
+        '. They were using ' +
+        pronoun +
+        ' to help with ' +
+        finishSentence(
+          lowerCaseFirst(reasonUsed)
+        ) +
+        ' ' +
+        finishSentence(effect) +
+        '\n\n' +
+
+        'Since losing access, ' +
+        finishSentence(
+          lowerCaseFirst(impact)
+        );
+    }
+  }
+
+
+  /*
+  PREVIOUS USER - ACCESS HARDER
+  */
+
+  else if (
+    situation ===
+    'Previously used a micronutrient supplement and can still access it, but access has become more difficult'
+  ) {
+
+    const duration =
+      valueOf('duration');
+
+    const reasonUsed =
+      valueOf('reasonUsed');
+
+    const effect =
+      valueOf('effect');
+
+    const impact =
+      valueOf('accessImpact');
+
+
+    if (relation === 'Myself') {
+
+      text +=
+        'MY EXPERIENCE\n\n' +
+        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
+
+        'I have used ' +
+        product +
+        ' for approximately ' +
+        duration +
+        ' and can still access ' +
+        pronoun +
+        ', but access has become more difficult. I use ' +
+        pronoun +
+        ' to help with ' +
+        finishSentence(
+          lowerCaseFirst(reasonUsed)
+        ) +
+        ' ' +
+        finishSentence(effect) +
+        '\n\n' +
+
+        'The difficulties accessing ' +
+        pronoun +
+        ' have affected me in this way: ' +
+        finishSentence(impact);
+
+    } else {
+
+      text +=
+        'MY EXPERIENCE\n\n' +
+        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
+
+        relation +
+        ' has used ' +
+        product +
+        ' for approximately ' +
+        duration +
+        ' and can still access ' +
+        pronoun +
+        ', but access has become more difficult. They use ' +
+        pronoun +
+        ' to help with ' +
+        finishSentence(
+          lowerCaseFirst(reasonUsed)
+        ) +
+        ' ' +
+        finishSentence(effect) +
+        '\n\n' +
+
+        'The difficulties accessing ' +
+        pronoun +
+        ' have affected us in this way: ' +
+        finishSentence(impact);
+    }
+  }
+
+
+  /*
+  WOULD LIKE TO TRY
+  */
+
+  else if (
+    situation ===
+    'Would like to try a micronutrient supplement but access has been difficult or impossible'
+  ) {
+
+    const whyInterested =
+      valueOf('whyInterested');
+
+    const barrier =
+      valueOf('barrier');
+
+
+    if (relation === 'Myself') {
+
+      text +=
+        'MY EXPERIENCE\n\n' +
+        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
+
+        'I would like to try ' +
+        product +
+        ', but access has been difficult or impossible. I am interested in ' +
+        pronoun +
+        ' because ' +
+        finishSentence(
+          lowerCaseFirst(whyInterested)
+        ) +
+        '\n\n' +
+
+        finishSentence(barrier);
+
+    } else {
+
+      text +=
+        'MY EXPERIENCE\n\n' +
+        'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
+
+        relation +
+        ' would like to try ' +
+        product +
+        ', but access has been difficult or impossible. They are interested in ' +
+        pronoun +
+        ' because ' +
+        finishSentence(
+          lowerCaseFirst(whyInterested)
+        ) +
+        '\n\n' +
+
+        finishSentence(barrier);
+    }
+  }
+
+
+  /*
+  SUPPORTER
+  */
+
+  else if (
+    situation ===
+    'I have not personally used or tried to access a micronutrient supplement, but I believe they should be more accessible in New Zealand'
+  ) {
+
+    const whyAccessImportant =
+      valueOf('whyAccessImportant');
+
+    text +=
+      'MY PERSPECTIVE\n\n' +
+
+      'I have not personally used or tried to access a micronutrient supplement, but I believe these products should be more accessible in New Zealand.\n\n' +
+
+      'One reason I believe access is important is ' +
+      finishSentence(
+        lowerCaseFirst(whyAccessImportant)
+      );
+  }
+
+
+  if (anythingElse) {
+
+    text +=
+      '\n\nI would also like you to know: ' +
+      finishSentence(anythingElse);
+  }
+
+
+  return text;
+}
+
+
+/*
+=========================================================
+BUILD EMAIL
+=========================================================
+*/
+
+function buildEmail() {
+
+  const mp =
+    findSelectedMp();
+
+  if (!mp) {
+
+    throw new Error(
+      'Please select your electorate MP.'
     );
+  }
+
+  const name =
+    valueOf('name');
+
+  const personalSection =
+    buildPersonalSection();
+
+  let toAddress;
+  let ccAddress;
+  let subject;
+
+  if (TEST_MODE) {
+
+    toAddress =
+      TEST_EMAIL;
+
+    ccAddress =
+      TEST_EMAIL;
+
+    subject =
+      '[TEST – intended for ' +
+      mp.selection +
+      '] Constituent concern about access to micronutrient supplements';
+
+  } else {
+
+    toAddress =
+      mp.email;
+
+    ccAddress =
+      TODD_EMAIL +
+      ',' +
+      LAB_EMAIL;
+
+    subject =
+      'Constituent concern about access to micronutrient supplements';
+  }
+
+
+  const body =
+`Kia ora ${mp.firstName},
+
+My name is ${name}. I am writing to you as my local electorate MP about barriers to accessing micronutrient supplements in New Zealand.
+
+Micronutrient supplements contain vitamins and minerals and are used by some New Zealanders to support mental health and wellbeing. However, New Zealand's Dietary Supplements Regulations 1985 impose limits on some nutrients that prevent research-based formulations from being supplied as dietary supplements. Some of these limits are poorly aligned with contemporary evidence and actual risk. For example, very low doses of lithium can be comparable with amounts naturally obtained from food and drinking water, yet lithium used therapeutically is regulated as a medicine even at very low concentrations.
+
+This creates significant barriers to access and funding. Formulations that fall outside these regulations may instead be treated as unapproved medicines, requiring people to find a healthcare practitioner willing to prescribe them. Pharmac has also declined to progress funding for Daily Essential Nutrients (DEN) because it is not an approved medicine, despite its clinical advisory committee recommending DEN as a second-line option for ADHD.
+
+This means an intervention recommended by Pharmac's own clinical advisory committee remains ineligible for public funding because of its regulatory classification rather than its evidence base.
+
+${personalSection}
+
+WHAT YOU CAN DO TO HELP
+
+I am asking you, as my electorate MP, to support changes that would remove these unnecessary barriers. Specifically:
+
+- Revise the Dietary Supplements Regulations 1985.
+- Increase or remove outdated maximum permitted doses for micronutrients where appropriate.
+- Create a pathway to Pharmac funding that does not require effective micronutrient supplements to first be classified as medicines.
+
+I also ask you to raise these issues with the relevant Ministers and officials and support regulation that reflects current scientific evidence and is proportionate to actual risk.
+
+Todd Stephenson MP has asked people affected by these access issues to contact their local MP and copy him into their correspondence, so he has been copied into this email.
+
+Kind regards,
+
+${name}`;
+
+
+  const mailto =
+    'mailto:' +
+    encodeURIComponent(toAddress) +
+    '?cc=' +
+    encodeURIComponent(ccAddress) +
+    '&subject=' +
+    encodeURIComponent(subject) +
+    '&body=' +
+    encodeURIComponent(body);
+
+
+  return mailto;
+}
+
+
+/*
+=========================================================
+FORM SUBMISSION
+=========================================================
+*/
+
+document
+  .getElementById('advocacyForm')
+  .addEventListener('submit', function(event) {
+
+    event.preventDefault();
+
+    const form =
+      this;
+
+    const button =
+      document.getElementById('submitButton');
+
+    const status =
+      document.getElementById('status');
+
+    const emailReady =
+      document.getElementById('emailReady');
+
+    const openEmailButton =
+      document.getElementById('openEmailButton');
+
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
+
+    try {
+
+      const mailto =
+        buildEmail();
+
+
+      /*
+      Submit a copy to Google Sheets in the hidden iframe.
+      We do not wait for Apps Script to respond.
+      */
+
+      const originalTarget =
+        form.target;
+
+      form.target =
+        'submissionFrame';
+
+
+      HTMLFormElement.prototype.submit.call(
+        form
+      );
+
+
+      form.target =
+        originalTarget;
+
+
+      /*
+      Immediately make the prepared email available.
+      */
+
+      openEmailButton.href =
+        mailto;
+
+
+      status.textContent =
+        '';
+
+
+      emailReady.classList.remove(
+        'hidden'
+      );
+
+
+      emailReady.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+
+
+    } catch (error) {
+
+      status.textContent =
+        error.message ||
+        'Something went wrong while preparing your email. Please try again.';
+    }
+  });
 
 </script>
 
