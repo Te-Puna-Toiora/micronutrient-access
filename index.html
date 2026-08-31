@@ -121,11 +121,6 @@
       color: white;
     }
 
-    button:disabled {
-      background: #999;
-      cursor: default;
-    }
-
     #status {
       margin-top: 18px;
       font-weight: bold;
@@ -144,13 +139,12 @@
       margin-top: 0;
     }
 
-    #emailReady p {
-      margin-bottom: 20px;
-    }
-
     .email-button {
-      display: inline-block;
+      display: block;
       box-sizing: border-box;
+      width: 100%;
+      max-width: 420px;
+      margin: 12px auto;
       padding: 14px 22px;
       border-radius: 5px;
       background: #1a73e8;
@@ -159,6 +153,16 @@
       font-weight: bold;
       text-decoration: none;
       cursor: pointer;
+    }
+
+    .secondary-button {
+      background: #5f6368;
+    }
+
+    .email-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #5f6368;
     }
 
     #submissionFrame {
@@ -177,9 +181,7 @@
         padding: 22px 18px;
       }
 
-      .email-button,
       button {
-        display: block;
         width: 100%;
       }
     }
@@ -221,10 +223,8 @@
 
   <p>
     Your responses will be used to prepare an email to the MP you select.
-    <strong>When you submit the form, you will be given a button to open the
-    prepared email in your own email account for you to review and send</strong>,
-    with Todd Stephenson MP and Te Puna Toiora | Mental Health and Nutrition
-    Research Group copied.
+    <strong>When you submit the form, you will be given options for opening the
+    prepared email in Outlook, Gmail, or your default email app</strong>.
   </p>
 
   <form
@@ -261,11 +261,7 @@
       </label>
 
       <div id="relationOtherBox" class="hidden">
-        <input
-          type="text"
-          id="relationOther"
-          name="relationOther"
-          placeholder="Please specify">
+        <input type="text" id="relationOther" name="relationOther" placeholder="Please specify">
       </div>
 
       <div class="help">
@@ -282,19 +278,12 @@
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="product"
-          value="Daily Essential Nutrients (DEN)"
-          required>
+        <input type="radio" name="product" value="Daily Essential Nutrients (DEN)" required>
         Daily Essential Nutrients (DEN)
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="product"
-          value="Micronutrient supplements generally (no specific product)">
+        <input type="radio" name="product" value="Micronutrient supplements generally (no specific product)">
         Micronutrient supplements generally (no specific product)
       </label>
 
@@ -304,11 +293,7 @@
       </label>
 
       <div id="productOtherBox" class="hidden">
-        <input
-          type="text"
-          id="productOther"
-          name="productOther"
-          placeholder="Please specify">
+        <input type="text" id="productOther" name="productOther" placeholder="Please specify">
       </div>
     </div>
 
@@ -319,34 +304,25 @@
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="situation"
-          value="Previously used a micronutrient supplement but can no longer access it"
-          required>
+        <input type="radio" name="situation"
+          value="Previously used a micronutrient supplement but can no longer access it" required>
         Previously used a micronutrient supplement but can no longer access it
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="situation"
+        <input type="radio" name="situation"
           value="Previously used a micronutrient supplement and can still access it, but access has become more difficult">
         Previously used a micronutrient supplement and can still access it, but access has become more difficult
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="situation"
+        <input type="radio" name="situation"
           value="Would like to try a micronutrient supplement but access has been difficult or impossible">
         Would like to try a micronutrient supplement but access has been difficult or impossible
       </label>
 
       <label class="radio-option">
-        <input
-          type="radio"
-          name="situation"
+        <input type="radio" name="situation"
           value="I have not personally used or tried to access a micronutrient supplement, but I believe they should be more accessible in New Zealand">
         I have not personally used or tried to access a micronutrient supplement,
         but I believe they should be more accessible in New Zealand
@@ -515,19 +491,30 @@
     <div id="status"></div>
 
     <div id="emailReady" class="hidden">
+
       <h2>Your email is ready</h2>
 
       <p>
-        Tap the button below to open your prepared email.
-        Please review the message, then press Send in your email app.
+        Choose how you would like to open your prepared email.
+        Review the message before pressing Send.
       </p>
 
-      <a
-        id="openEmailButton"
-        class="email-button"
-        href="#">
-        OPEN MY PREPARED EMAIL
+      <a id="outlookButton" class="email-button" href="#">
+        OPEN IN OUTLOOK
       </a>
+
+      <a id="gmailButton" class="email-button" href="#" target="_blank">
+        OPEN IN GMAIL
+      </a>
+
+      <a id="defaultButton" class="email-button secondary-button" href="#">
+        OPEN IN MY DEFAULT EMAIL APP
+      </a>
+
+      <div class="email-note">
+        If one option does not work on your device, try another.
+      </div>
+
     </div>
 
   </form>
@@ -561,31 +548,29 @@ RELATIONSHIP BRANCHING
 =========================================================
 */
 
-document
-  .querySelectorAll('input[name="relation"]')
-  .forEach(function(radio) {
+document.querySelectorAll('input[name="relation"]').forEach(function(radio) {
 
-    radio.addEventListener('change', function() {
+  radio.addEventListener('change', function() {
 
-      const box =
-        document.getElementById('relationOtherBox');
+    const box =
+      document.getElementById('relationOtherBox');
 
-      const input =
-        document.getElementById('relationOther');
+    const input =
+      document.getElementById('relationOther');
 
-      if (this.value === 'Other') {
+    if (this.value === 'Other') {
 
-        box.classList.remove('hidden');
-        input.required = true;
+      box.classList.remove('hidden');
+      input.required = true;
 
-      } else {
+    } else {
 
-        box.classList.add('hidden');
-        input.required = false;
-        input.value = '';
-      }
-    });
+      box.classList.add('hidden');
+      input.required = false;
+      input.value = '';
+    }
   });
+});
 
 
 /*
@@ -594,31 +579,29 @@ PRODUCT BRANCHING
 =========================================================
 */
 
-document
-  .querySelectorAll('input[name="product"]')
-  .forEach(function(radio) {
+document.querySelectorAll('input[name="product"]').forEach(function(radio) {
 
-    radio.addEventListener('change', function() {
+  radio.addEventListener('change', function() {
 
-      const box =
-        document.getElementById('productOtherBox');
+    const box =
+      document.getElementById('productOtherBox');
 
-      const input =
-        document.getElementById('productOther');
+    const input =
+      document.getElementById('productOther');
 
-      if (this.value === 'Other') {
+    if (this.value === 'Other') {
 
-        box.classList.remove('hidden');
-        input.required = true;
+      box.classList.remove('hidden');
+      input.required = true;
 
-      } else {
+    } else {
 
-        box.classList.add('hidden');
-        input.required = false;
-        input.value = '';
-      }
-    });
+      box.classList.add('hidden');
+      input.required = false;
+      input.value = '';
+    }
   });
+});
 
 
 /*
@@ -627,87 +610,85 @@ SITUATION BRANCHING
 =========================================================
 */
 
-document
-  .querySelectorAll('input[name="situation"]')
-  .forEach(function(radio) {
+document.querySelectorAll('input[name="situation"]').forEach(function(radio) {
 
-    radio.addEventListener('change', function() {
+  radio.addEventListener('change', function() {
 
-      const usedSection =
-        document.getElementById('usedSection');
+    const usedSection =
+      document.getElementById('usedSection');
 
-      const wantSection =
-        document.getElementById('wantSection');
+    const wantSection =
+      document.getElementById('wantSection');
 
-      const supportSection =
-        document.getElementById('supportSection');
+    const supportSection =
+      document.getElementById('supportSection');
 
-      const usedFields = [
-        document.getElementById('duration'),
-        document.getElementById('reasonUsed'),
-        document.getElementById('effect'),
-        document.getElementById('accessImpact')
-      ];
+    const usedFields = [
+      document.getElementById('duration'),
+      document.getElementById('reasonUsed'),
+      document.getElementById('effect'),
+      document.getElementById('accessImpact')
+    ];
 
-      const wantFields = [
-        document.getElementById('whyInterested'),
-        document.getElementById('barrier')
-      ];
+    const wantFields = [
+      document.getElementById('whyInterested'),
+      document.getElementById('barrier')
+    ];
 
-      const supportFields = [
-        document.getElementById('whyAccessImportant')
-      ];
+    const supportFields = [
+      document.getElementById('whyAccessImportant')
+    ];
 
-      usedSection.classList.add('hidden');
-      wantSection.classList.add('hidden');
-      supportSection.classList.add('hidden');
+    usedSection.classList.add('hidden');
+    wantSection.classList.add('hidden');
+    supportSection.classList.add('hidden');
+
+    usedFields.forEach(function(field) {
+      field.required = false;
+      field.value = '';
+    });
+
+    wantFields.forEach(function(field) {
+      field.required = false;
+      field.value = '';
+    });
+
+    supportFields.forEach(function(field) {
+      field.required = false;
+      field.value = '';
+    });
+
+    if (this.value.startsWith('Previously used')) {
+
+      usedSection.classList.remove('hidden');
 
       usedFields.forEach(function(field) {
-        field.required = false;
-        field.value = '';
+        field.required = true;
       });
+
+    } else if (this.value.startsWith('Would like to try')) {
+
+      wantSection.classList.remove('hidden');
 
       wantFields.forEach(function(field) {
-        field.required = false;
-        field.value = '';
+        field.required = true;
       });
+
+    } else if (this.value.startsWith('I have not personally used')) {
+
+      supportSection.classList.remove('hidden');
 
       supportFields.forEach(function(field) {
-        field.required = false;
-        field.value = '';
+        field.required = true;
       });
-
-      if (this.value.startsWith('Previously used')) {
-
-        usedSection.classList.remove('hidden');
-
-        usedFields.forEach(function(field) {
-          field.required = true;
-        });
-
-      } else if (this.value.startsWith('Would like to try')) {
-
-        wantSection.classList.remove('hidden');
-
-        wantFields.forEach(function(field) {
-          field.required = true;
-        });
-
-      } else if (this.value.startsWith('I have not personally used')) {
-
-        supportSection.classList.remove('hidden');
-
-        supportFields.forEach(function(field) {
-          field.required = true;
-        });
-      }
-    });
+    }
   });
+});
 
 
 /*
 =========================================================
-LOAD MP OPTIONS
+LOAD MPs
 =========================================================
 */
 
@@ -727,74 +708,25 @@ function receiveMpOptions(mps) {
     return;
   }
 
-
-  /*
-   * Normalize MP data.
-   *
-   * The current Apps Script returns objects:
-   *
-   * {
-   *   selection: "...",
-   *   electorate: "...",
-   *   email: "...",
-   *   firstName: "..."
-   * }
-   *
-   * This also protects against an older cached version.
-   */
-
   mpData =
-    mps
-      .map(function(mp) {
+    mps.map(function(mp) {
 
-        if (
-          mp &&
-          typeof mp === 'object'
-        ) {
+      if (mp && typeof mp === 'object') {
 
-          return {
-            selection:
-              String(mp.selection || '').trim(),
+        return {
+          selection: String(mp.selection || '').trim(),
+          electorate: String(mp.electorate || '').trim(),
+          email: String(mp.email || '').trim(),
+          firstName: String(mp.firstName || '').trim()
+        };
+      }
 
-            electorate:
-              String(mp.electorate || '').trim(),
+      return null;
 
-            email:
-              String(mp.email || '').trim(),
+    }).filter(function(mp) {
 
-            firstName:
-              String(mp.firstName || '').trim()
-          };
-        }
-
-
-        /*
-         * Older plain-text response.
-         * Keep it readable rather than showing [object Object].
-         */
-
-        if (
-          typeof mp === 'string'
-        ) {
-
-          return {
-            selection: mp.trim(),
-            electorate: '',
-            email: '',
-            firstName: ''
-          };
-        }
-
-
-        return null;
-      })
-      .filter(function(mp) {
-
-        return (
-          mp &&
-          mp.selection
-        );
-      });
+      return mp && mp.selection;
+    });
 
 
   mpData.forEach(function(mp) {
@@ -822,24 +754,8 @@ function receiveMpOptions(mps) {
 
 function loadMpOptions() {
 
-  const oldScript =
-    document.getElementById('mpLoaderScript');
-
-  if (oldScript) {
-    oldScript.remove();
-  }
-
-
   const script =
     document.createElement('script');
-
-  script.id =
-    'mpLoaderScript';
-
-
-  /*
-   * Timestamp prevents a cached old response.
-   */
 
   script.src =
     SCRIPT_URL +
@@ -848,20 +764,14 @@ function loadMpOptions() {
     '&t=' +
     Date.now();
 
+  script.onerror = function() {
 
-  script.onerror =
-    function() {
-
-      document
-        .getElementById('mpSelection')
-        .innerHTML =
-        '<option value="">Unable to load MPs</option>';
-    };
-
+    document.getElementById('mpSelection').innerHTML =
+      '<option value="">Unable to load MPs</option>';
+  };
 
   document.body.appendChild(script);
 }
-
 
 loadMpOptions();
 
@@ -875,9 +785,7 @@ HELPERS
 function valueOf(name) {
 
   const field =
-    document.querySelector(
-      '[name="' + name + '"]'
-    );
+    document.querySelector('[name="' + name + '"]');
 
   return field
     ? field.value.trim()
@@ -889,9 +797,7 @@ function checkedValue(name) {
 
   const field =
     document.querySelector(
-      'input[name="' +
-      name +
-      '"]:checked'
+      'input[name="' + name + '"]:checked'
     );
 
   return field
@@ -906,7 +812,6 @@ function getRelation() {
     checkedValue('relation');
 
   if (relation === 'Other') {
-
     return valueOf('relationOther');
   }
 
@@ -920,7 +825,6 @@ function getProduct() {
     checkedValue('product');
 
   if (product === 'Other') {
-
     return valueOf('productOther');
   }
 
@@ -944,11 +848,9 @@ function productForEmail(product) {
 
 function pronounForProduct(product) {
 
-  return product
-    .toLowerCase()
-    .includes('supplements')
-      ? 'them'
-      : 'it';
+  return product.toLowerCase().includes('supplements')
+    ? 'them'
+    : 'it';
 }
 
 
@@ -958,10 +860,8 @@ function lowerCaseFirst(text) {
     return '';
   }
 
-  return (
-    text.charAt(0).toLowerCase() +
-    text.slice(1)
-  );
+  return text.charAt(0).toLowerCase() +
+    text.slice(1);
 }
 
 
@@ -989,9 +889,7 @@ function findSelectedMp() {
 
   return mpData.find(function(mp) {
 
-    return (
-      mp.selection === selection
-    );
+    return mp.selection === selection;
   });
 }
 
@@ -1024,10 +922,6 @@ function buildPersonalSection() {
 
   let text = '';
 
-
-  /*
-  PREVIOUS USER - NO LONGER ACCESS
-  */
 
   if (
     situation ===
@@ -1063,17 +957,13 @@ function buildPersonalSection() {
         '. I was using ' +
         pronoun +
         ' to help with ' +
-        finishSentence(
-          lowerCaseFirst(reasonUsed)
-        ) +
+        finishSentence(lowerCaseFirst(reasonUsed)) +
         ' ' +
         finishSentence(effect) +
         '\n\n' +
 
         'Since losing access, ' +
-        finishSentence(
-          lowerCaseFirst(impact)
-        );
+        finishSentence(lowerCaseFirst(impact));
 
     } else {
 
@@ -1092,24 +982,16 @@ function buildPersonalSection() {
         '. They were using ' +
         pronoun +
         ' to help with ' +
-        finishSentence(
-          lowerCaseFirst(reasonUsed)
-        ) +
+        finishSentence(lowerCaseFirst(reasonUsed)) +
         ' ' +
         finishSentence(effect) +
         '\n\n' +
 
         'Since losing access, ' +
-        finishSentence(
-          lowerCaseFirst(impact)
-        );
+        finishSentence(lowerCaseFirst(impact));
     }
   }
 
-
-  /*
-  PREVIOUS USER - ACCESS HARDER
-  */
 
   else if (
     situation ===
@@ -1145,9 +1027,7 @@ function buildPersonalSection() {
         ', but access has become more difficult. I use ' +
         pronoun +
         ' to help with ' +
-        finishSentence(
-          lowerCaseFirst(reasonUsed)
-        ) +
+        finishSentence(lowerCaseFirst(reasonUsed)) +
         ' ' +
         finishSentence(effect) +
         '\n\n' +
@@ -1174,9 +1054,7 @@ function buildPersonalSection() {
         ', but access has become more difficult. They use ' +
         pronoun +
         ' to help with ' +
-        finishSentence(
-          lowerCaseFirst(reasonUsed)
-        ) +
+        finishSentence(lowerCaseFirst(reasonUsed)) +
         ' ' +
         finishSentence(effect) +
         '\n\n' +
@@ -1188,10 +1066,6 @@ function buildPersonalSection() {
     }
   }
 
-
-  /*
-  WOULD LIKE TO TRY
-  */
 
   else if (
     situation ===
@@ -1217,9 +1091,7 @@ function buildPersonalSection() {
         ', but access has been difficult or impossible. I am interested in ' +
         pronoun +
         ' because ' +
-        finishSentence(
-          lowerCaseFirst(whyInterested)
-        ) +
+        finishSentence(lowerCaseFirst(whyInterested)) +
         '\n\n' +
 
         finishSentence(barrier);
@@ -1237,19 +1109,13 @@ function buildPersonalSection() {
         ', but access has been difficult or impossible. They are interested in ' +
         pronoun +
         ' because ' +
-        finishSentence(
-          lowerCaseFirst(whyInterested)
-        ) +
+        finishSentence(lowerCaseFirst(whyInterested)) +
         '\n\n' +
 
         finishSentence(barrier);
     }
   }
 
-
-  /*
-  SUPPORTER
-  */
 
   else if (
     situation ===
@@ -1285,11 +1151,11 @@ function buildPersonalSection() {
 
 /*
 =========================================================
-BUILD EMAIL
+BUILD EMAIL DATA
 =========================================================
 */
 
-function buildEmail() {
+function buildEmailData() {
 
   const mp =
     findSelectedMp();
@@ -1298,23 +1164,6 @@ function buildEmail() {
 
     throw new Error(
       'Please select your electorate MP.'
-    );
-  }
-
-
-  /*
-   * If the MP list has somehow come from an old cached
-   * backend response, don't create a live email using
-   * incomplete MP information.
-   */
-
-  if (
-    !TEST_MODE &&
-    !mp.email
-  ) {
-
-    throw new Error(
-      'The MP contact details have not loaded correctly. Please refresh the page and try again.'
     );
   }
 
@@ -1393,16 +1242,90 @@ Kind regards,
 ${name}`;
 
 
-  return (
-    'mailto:' +
-    encodeURIComponent(toAddress) +
-    '?cc=' +
-    encodeURIComponent(ccAddress) +
+  return {
+    to: toAddress,
+    cc: ccAddress,
+    subject: subject,
+    body: body
+  };
+}
+
+
+/*
+=========================================================
+CREATE EMAIL LINKS
+=========================================================
+*/
+
+function buildLinks(data) {
+
+  const encodedTo =
+    encodeURIComponent(data.to);
+
+  const encodedCc =
+    encodeURIComponent(data.cc);
+
+  const encodedSubject =
+    encodeURIComponent(data.subject);
+
+  const encodedBody =
+    encodeURIComponent(data.body);
+
+
+  /*
+   * Outlook mobile app
+   */
+
+  const outlook =
+    'ms-outlook://compose' +
+    '?to=' +
+    encodedTo +
+    '&cc=' +
+    encodedCc +
     '&subject=' +
-    encodeURIComponent(subject) +
+    encodedSubject +
     '&body=' +
-    encodeURIComponent(body)
-  );
+    encodedBody;
+
+
+  /*
+   * Gmail web compose
+   */
+
+  const gmail =
+    'https://mail.google.com/mail/' +
+    '?view=cm' +
+    '&fs=1' +
+    '&to=' +
+    encodedTo +
+    '&cc=' +
+    encodedCc +
+    '&su=' +
+    encodedSubject +
+    '&body=' +
+    encodedBody;
+
+
+  /*
+   * Generic mailto fallback
+   */
+
+  const mailto =
+    'mailto:' +
+    encodedTo +
+    '?cc=' +
+    encodedCc +
+    '&subject=' +
+    encodedSubject +
+    '&body=' +
+    encodedBody;
+
+
+  return {
+    outlook: outlook,
+    gmail: gmail,
+    mailto: mailto
+  };
 }
 
 
@@ -1427,8 +1350,14 @@ document
     const emailReady =
       document.getElementById('emailReady');
 
-    const openEmailButton =
-      document.getElementById('openEmailButton');
+    const outlookButton =
+      document.getElementById('outlookButton');
+
+    const gmailButton =
+      document.getElementById('gmailButton');
+
+    const defaultButton =
+      document.getElementById('defaultButton');
 
 
     if (!form.reportValidity()) {
@@ -1438,15 +1367,15 @@ document
 
     try {
 
-      const mailto =
-        buildEmail();
+      const data =
+        buildEmailData();
+
+      const links =
+        buildLinks(data);
 
 
       /*
-       * Save response to Google Sheet.
-       *
-       * We deliberately do NOT wait for Apps Script to
-       * respond before showing the email button.
+       * Save a copy to the spreadsheet.
        */
 
       HTMLFormElement.prototype.submit.call(
@@ -1455,11 +1384,17 @@ document
 
 
       /*
-       * Prepare email immediately.
+       * Populate all three email-opening options.
        */
 
-      openEmailButton.href =
-        mailto;
+      outlookButton.href =
+        links.outlook;
+
+      gmailButton.href =
+        links.gmail;
+
+      defaultButton.href =
+        links.mailto;
 
 
       status.textContent =
@@ -1482,7 +1417,6 @@ document
       emailReady.classList.add(
         'hidden'
       );
-
 
       status.textContent =
         error.message ||
