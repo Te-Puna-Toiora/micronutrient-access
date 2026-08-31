@@ -180,12 +180,25 @@
       background: white;
       border: 1px solid #ccc;
       border-radius: 5px;
-      white-space: pre-wrap;
       font-family: Arial, sans-serif;
       font-size: 14px;
       line-height: 1.5;
-      max-height: 500px;
+      max-height: 550px;
       overflow-y: auto;
+    }
+
+    .prepared-email p {
+      margin: 0 0 16px 0;
+    }
+
+    .prepared-email ul {
+      margin-top: 0;
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    .prepared-email li {
+      margin-bottom: 6px;
     }
 
     #copyStatus {
@@ -444,15 +457,10 @@
 
     <div class="question">
       <label class="question-label" for="anythingElse">
-        Is there anything else you would like your MP to know?
+        Please state anything else you would like your MP to know, or leave this box blank.
       </label>
 
       <textarea id="anythingElse" name="anythingElse"></textarea>
-
-      <div class="help">
-        You can add anything else about your experience, the experience of someone
-        you care about, or why access to micronutrient supplements matters to you.
-      </div>
     </div>
 
     <h2>Your electorate MP</h2>
@@ -584,7 +592,9 @@ let mpData = [];
 let currentEmailData = null;
 
 
-/* RELATION */
+/* =====================================================
+   BRANCHING
+===================================================== */
 
 document.querySelectorAll('input[name="relation"]').forEach(function(radio) {
 
@@ -605,8 +615,6 @@ document.querySelectorAll('input[name="relation"]').forEach(function(radio) {
 });
 
 
-/* PRODUCT */
-
 document.querySelectorAll('input[name="product"]').forEach(function(radio) {
 
   radio.addEventListener('change', function() {
@@ -625,8 +633,6 @@ document.querySelectorAll('input[name="product"]').forEach(function(radio) {
   });
 });
 
-
-/* SITUATION */
 
 document.querySelectorAll('input[name="situation"]').forEach(function(radio) {
 
@@ -699,7 +705,9 @@ document.querySelectorAll('input[name="situation"]').forEach(function(radio) {
 });
 
 
-/* LOAD MPs */
+/* =====================================================
+   MP LIST
+===================================================== */
 
 function receiveMpOptions(mps) {
 
@@ -771,7 +779,9 @@ function loadMpOptions() {
 loadMpOptions();
 
 
-/* HELPERS */
+/* =====================================================
+   HELPERS
+===================================================== */
 
 function valueOf(name) {
 
@@ -856,6 +866,17 @@ function finishSentence(text) {
 }
 
 
+function escapeHtml(text) {
+
+  return String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+
 function findSelectedMp() {
 
   const selection = valueOf('mpSelection');
@@ -866,7 +887,9 @@ function findSelectedMp() {
 }
 
 
-/* PERSONAL SECTION */
+/* =====================================================
+   PERSONAL SECTION
+===================================================== */
 
 function buildPersonalSection() {
 
@@ -900,7 +923,8 @@ function buildPersonalSection() {
         '. I was using ' + pronoun +
         ' to help with ' +
         finishSentence(lowerCaseFirst(reasonUsed)) +
-        ' ' + finishSentence(effect) +
+        ' ' +
+        finishSentence(effect) +
         '\n\nSince losing access, ' +
         finishSentence(lowerCaseFirst(impact));
 
@@ -915,7 +939,8 @@ function buildPersonalSection() {
         '. They were using ' + pronoun +
         ' to help with ' +
         finishSentence(lowerCaseFirst(reasonUsed)) +
-        ' ' + finishSentence(effect) +
+        ' ' +
+        finishSentence(effect) +
         '\n\nSince losing access, ' +
         finishSentence(lowerCaseFirst(impact));
     }
@@ -943,7 +968,8 @@ function buildPersonalSection() {
         ', but access has become more difficult. I use ' +
         pronoun + ' to help with ' +
         finishSentence(lowerCaseFirst(reasonUsed)) +
-        ' ' + finishSentence(effect) +
+        ' ' +
+        finishSentence(effect) +
         '\n\nThe difficulties accessing ' +
         pronoun +
         ' have affected me in this way: ' +
@@ -960,7 +986,8 @@ function buildPersonalSection() {
         ', but access has become more difficult. They use ' +
         pronoun + ' to help with ' +
         finishSentence(lowerCaseFirst(reasonUsed)) +
-        ' ' + finishSentence(effect) +
+        ' ' +
+        finishSentence(effect) +
         '\n\nThe difficulties accessing ' +
         pronoun +
         ' have affected us in this way: ' +
@@ -1027,11 +1054,14 @@ function buildPersonalSection() {
       finishSentence(anythingElse);
   }
 
+
   return text;
 }
 
 
-/* BUILD EMAIL */
+/* =====================================================
+   EMAIL DATA
+===================================================== */
 
 function buildEmailData() {
 
@@ -1078,6 +1108,7 @@ function buildEmailData() {
   const greetingName =
     mp.firstName || 'there';
 
+
   const body =
 `Kia ora ${greetingName},
 
@@ -1107,16 +1138,106 @@ Kind regards,
 
 ${name}`;
 
+
   return {
     to: toAddress,
     cc: ccAddress,
     subject: subject,
-    body: body
+    body: body,
+    name: name,
+    greetingName: greetingName,
+    personalSection: personalSection
   };
 }
 
 
-/* MAILTO */
+/* =====================================================
+   HTML EMAIL
+===================================================== */
+
+function paragraphsToHtml(text) {
+
+  const parts =
+    String(text || '').split(/\n\n+/);
+
+  return parts.map(function(part) {
+
+    const safe =
+      escapeHtml(part).replace(/\n/g, '<br>');
+
+    if (
+      part === 'MY EXPERIENCE' ||
+      part === 'MY PERSPECTIVE'
+    ) {
+      return '<p><strong>' + safe + '</strong></p>';
+    }
+
+    return '<p>' + safe + '</p>';
+
+  }).join('');
+}
+
+
+function buildHtmlEmail(data) {
+
+  const personalHtml =
+    paragraphsToHtml(data.personalSection);
+
+  return `
+<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#000;">
+
+<p>Kia ora ${escapeHtml(data.greetingName)},</p>
+
+<p>
+My name is ${escapeHtml(data.name)}. I am writing to you as my local electorate MP about barriers to accessing micronutrient supplements in New Zealand.
+</p>
+
+<p>
+Micronutrient supplements contain vitamins and minerals and are used by some New Zealanders to support mental health and wellbeing. However, New Zealand's Dietary Supplements Regulations 1985 impose limits on some nutrients that prevent research-based formulations from being supplied as dietary supplements. Some of these limits are poorly aligned with contemporary evidence and actual risk. For example, very low doses of lithium can be comparable with amounts naturally obtained from food and drinking water, yet lithium used therapeutically is regulated as a medicine even at very low concentrations.
+</p>
+
+<p>
+This creates significant barriers to access and funding. Formulations that fall outside these regulations may instead be treated as unapproved medicines, requiring people to find a healthcare practitioner willing to prescribe them. Pharmac has also declined to progress funding for Daily Essential Nutrients (DEN) because it is not an approved medicine, despite its clinical advisory committee recommending DEN as a second-line option for ADHD.
+</p>
+
+<p>
+<strong>This means an intervention recommended by Pharmac's own clinical advisory committee remains ineligible for public funding because of its regulatory classification rather than its evidence base.</strong>
+</p>
+
+${personalHtml}
+
+<p><strong>WHAT YOU CAN DO TO HELP</strong></p>
+
+<p>
+I am asking you, as my electorate MP, to support changes that would remove these unnecessary barriers. Specifically:
+</p>
+
+<ul>
+<li>Revise the Dietary Supplements Regulations 1985.</li>
+<li>Increase or remove outdated maximum permitted doses for micronutrients where appropriate.</li>
+<li>Create a pathway to Pharmac funding that does not require effective micronutrient supplements to first be classified as medicines.</li>
+</ul>
+
+<p>
+I also ask you to raise these issues with the relevant Ministers and officials and support regulation that reflects current scientific evidence and is proportionate to actual risk.
+</p>
+
+<p>
+Todd Stephenson MP has asked people affected by these access issues to contact their local MP and copy him into their correspondence, so he has been copied into this email.
+</p>
+
+<p>
+Kind regards,<br><br>
+${escapeHtml(data.name)}
+</p>
+
+</div>`;
+}
+
+
+/* =====================================================
+   MAILTO
+===================================================== */
 
 function buildMailto(data) {
 
@@ -1133,59 +1254,140 @@ function buildMailto(data) {
 }
 
 
-/* COPY EMAIL */
+/* =====================================================
+   COPY RICH EMAIL
+===================================================== */
 
 async function copyPreparedEmail() {
 
   if (!currentEmailData) return;
 
-  const copyText =
+  const status =
+    document.getElementById('copyStatus');
+
+  const plainText =
 `To: ${currentEmailData.to}
 CC: ${currentEmailData.cc}
 Subject: ${currentEmailData.subject}
 
 ${currentEmailData.body}`;
 
-  const status =
-    document.getElementById('copyStatus');
+
+  const htmlBody =
+    buildHtmlEmail(currentEmailData);
+
+
+  const htmlText =
+`<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#000;">
+<p><strong>To:</strong> ${escapeHtml(currentEmailData.to)}</p>
+<p><strong>CC:</strong> ${escapeHtml(currentEmailData.cc)}</p>
+<p><strong>Subject:</strong> ${escapeHtml(currentEmailData.subject)}</p>
+<br>
+${htmlBody}
+</div>`;
+
 
   try {
 
-    await navigator.clipboard.writeText(copyText);
+    if (
+      navigator.clipboard &&
+      window.ClipboardItem
+    ) {
 
-    status.textContent =
-      'Copied! You can now paste this into a new email.';
+      const item =
+        new ClipboardItem({
+
+          'text/plain':
+            new Blob(
+              [plainText],
+              { type: 'text/plain' }
+            ),
+
+          'text/html':
+            new Blob(
+              [htmlText],
+              { type: 'text/html' }
+            )
+        });
+
+
+      await navigator.clipboard.write([
+        item
+      ]);
+
+
+      status.textContent =
+        'Copied! Paste it into a new email. Formatting will be preserved where supported.';
+
+      return;
+    }
+
+    throw new Error(
+      'Rich clipboard not supported'
+    );
 
   } catch (error) {
 
-    const temp =
-      document.createElement('textarea');
+    /*
+     * Fallback: copy plain text.
+     */
 
-    temp.value = copyText;
-    temp.style.position = 'fixed';
-    temp.style.opacity = '0';
+    try {
 
-    document.body.appendChild(temp);
+      await navigator.clipboard.writeText(
+        plainText
+      );
 
-    temp.focus();
-    temp.select();
+      status.textContent =
+        'Copied! Paste it into a new email.';
 
-    document.execCommand('copy');
+    } catch (secondError) {
 
-    document.body.removeChild(temp);
+      const temp =
+        document.createElement('textarea');
 
-    status.textContent =
-      'Copied! You can now paste this into a new email.';
+      temp.value =
+        plainText;
+
+      temp.style.position =
+        'fixed';
+
+      temp.style.opacity =
+        '0';
+
+      document.body.appendChild(
+        temp
+      );
+
+      temp.focus();
+      temp.select();
+
+      document.execCommand(
+        'copy'
+      );
+
+      document.body.removeChild(
+        temp
+      );
+
+      status.textContent =
+        'Copied! Paste it into a new email.';
+    }
   }
 }
 
 
 document
   .getElementById('copyEmailButton')
-  .addEventListener('click', copyPreparedEmail);
+  .addEventListener(
+    'click',
+    copyPreparedEmail
+  );
 
 
-/* SUBMIT */
+/* =====================================================
+   SUBMIT
+===================================================== */
 
 document
   .getElementById('advocacyForm')
@@ -1193,7 +1395,8 @@ document
 
     event.preventDefault();
 
-    const form = this;
+    const form =
+      this;
 
     if (!form.reportValidity()) {
       return;
@@ -1211,38 +1414,70 @@ document
         buildEmailData();
 
       const mailto =
-        buildMailto(currentEmailData);
+        buildMailto(
+          currentEmailData
+        );
 
 
-      /* Save response */
+      /*
+       * Save response to spreadsheet.
+       */
 
-      HTMLFormElement.prototype.submit.call(form);
+      HTMLFormElement.prototype.submit.call(
+        form
+      );
 
 
-      /* Populate result */
+      /*
+       * Populate result.
+       */
 
-      document.getElementById('openEmailButton').href =
+      document
+        .getElementById('openEmailButton')
+        .href =
         mailto;
 
-      document.getElementById('displayTo').textContent =
+
+      document
+        .getElementById('displayTo')
+        .textContent =
         currentEmailData.to;
 
-      document.getElementById('displayCc').textContent =
+
+      document
+        .getElementById('displayCc')
+        .textContent =
         currentEmailData.cc;
 
-      document.getElementById('displaySubject').textContent =
+
+      document
+        .getElementById('displaySubject')
+        .textContent =
         currentEmailData.subject;
 
-      document.getElementById('displayBody').textContent =
-        currentEmailData.body;
 
-      document.getElementById('copyStatus').textContent =
+      document
+        .getElementById('displayBody')
+        .innerHTML =
+        buildHtmlEmail(
+          currentEmailData
+        );
+
+
+      document
+        .getElementById('copyStatus')
+        .textContent =
         '';
+
 
       status.textContent =
         '';
 
-      emailReady.classList.remove('hidden');
+
+      emailReady.classList.remove(
+        'hidden'
+      );
+
 
       emailReady.scrollIntoView({
         behavior: 'smooth',
@@ -1251,7 +1486,9 @@ document
 
     } catch (error) {
 
-      emailReady.classList.add('hidden');
+      emailReady.classList.add(
+        'hidden'
+      );
 
       status.textContent =
         error.message ||
