@@ -508,7 +508,9 @@
       </label>
     </div>
 
-    <button type="submit" id="submitButton">Prepare my email</button>
+    <button type="submit" id="submitButton">
+      Prepare my email
+    </button>
 
     <div id="status"></div>
 
@@ -705,21 +707,95 @@ document
 
 /*
 =========================================================
-LOAD MPs
+LOAD MP OPTIONS
 =========================================================
 */
 
 function receiveMpOptions(mps) {
-
-  mpData = Array.isArray(mps)
-    ? mps
-    : [];
 
   const select =
     document.getElementById('mpSelection');
 
   select.innerHTML =
     '<option value="">Choose your electorate MP</option>';
+
+  if (!Array.isArray(mps)) {
+
+    select.innerHTML =
+      '<option value="">Unable to load MPs</option>';
+
+    return;
+  }
+
+
+  /*
+   * Normalize MP data.
+   *
+   * The current Apps Script returns objects:
+   *
+   * {
+   *   selection: "...",
+   *   electorate: "...",
+   *   email: "...",
+   *   firstName: "..."
+   * }
+   *
+   * This also protects against an older cached version.
+   */
+
+  mpData =
+    mps
+      .map(function(mp) {
+
+        if (
+          mp &&
+          typeof mp === 'object'
+        ) {
+
+          return {
+            selection:
+              String(mp.selection || '').trim(),
+
+            electorate:
+              String(mp.electorate || '').trim(),
+
+            email:
+              String(mp.email || '').trim(),
+
+            firstName:
+              String(mp.firstName || '').trim()
+          };
+        }
+
+
+        /*
+         * Older plain-text response.
+         * Keep it readable rather than showing [object Object].
+         */
+
+        if (
+          typeof mp === 'string'
+        ) {
+
+          return {
+            selection: mp.trim(),
+            electorate: '',
+            email: '',
+            firstName: ''
+          };
+        }
+
+
+        return null;
+      })
+      .filter(function(mp) {
+
+        return (
+          mp &&
+          mp.selection
+        );
+      });
+
 
   mpData.forEach(function(mp) {
 
@@ -734,28 +810,58 @@ function receiveMpOptions(mps) {
 
     select.appendChild(option);
   });
+
+
+  if (mpData.length === 0) {
+
+    select.innerHTML =
+      '<option value="">Unable to load MPs</option>';
+  }
 }
 
 
 function loadMpOptions() {
 
+  const oldScript =
+    document.getElementById('mpLoaderScript');
+
+  if (oldScript) {
+    oldScript.remove();
+  }
+
+
   const script =
     document.createElement('script');
 
+  script.id =
+    'mpLoaderScript';
+
+
+  /*
+   * Timestamp prevents a cached old response.
+   */
+
   script.src =
     SCRIPT_URL +
-    '?mode=mpOptions&callback=receiveMpOptions';
+    '?mode=mpOptions' +
+    '&callback=receiveMpOptions' +
+    '&t=' +
+    Date.now();
 
-  script.onerror = function() {
 
-    document
-      .getElementById('mpSelection')
-      .innerHTML =
-      '<option value="">Unable to load MPs</option>';
-  };
+  script.onerror =
+    function() {
+
+      document
+        .getElementById('mpSelection')
+        .innerHTML =
+        '<option value="">Unable to load MPs</option>';
+    };
+
 
   document.body.appendChild(script);
 }
+
 
 loadMpOptions();
 
@@ -838,9 +944,11 @@ function productForEmail(product) {
 
 function pronounForProduct(product) {
 
-  return product.toLowerCase().includes('supplements')
-    ? 'them'
-    : 'it';
+  return product
+    .toLowerCase()
+    .includes('supplements')
+      ? 'them'
+      : 'it';
 }
 
 
@@ -850,8 +958,10 @@ function lowerCaseFirst(text) {
     return '';
   }
 
-  return text.charAt(0).toLowerCase() +
-    text.slice(1);
+  return (
+    text.charAt(0).toLowerCase() +
+    text.slice(1)
+  );
 }
 
 
@@ -879,14 +989,16 @@ function findSelectedMp() {
 
   return mpData.find(function(mp) {
 
-    return mp.selection === selection;
+    return (
+      mp.selection === selection
+    );
   });
 }
 
 
 /*
 =========================================================
-BUILD PERSONAL STORY
+BUILD PERSONAL SECTION
 =========================================================
 */
 
@@ -937,8 +1049,9 @@ function buildPersonalSection() {
 
     if (relation === 'Myself') {
 
-      text +=
+      text =
         'MY EXPERIENCE\n\n' +
+
         'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
 
         'I previously used ' +
@@ -964,8 +1077,9 @@ function buildPersonalSection() {
 
     } else {
 
-      text +=
+      text =
         'MY EXPERIENCE\n\n' +
+
         'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
 
         relation +
@@ -1017,8 +1131,9 @@ function buildPersonalSection() {
 
     if (relation === 'Myself') {
 
-      text +=
+      text =
         'MY EXPERIENCE\n\n' +
+
         'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
 
         'I have used ' +
@@ -1044,8 +1159,9 @@ function buildPersonalSection() {
 
     } else {
 
-      text +=
+      text =
         'MY EXPERIENCE\n\n' +
+
         'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
 
         relation +
@@ -1091,8 +1207,9 @@ function buildPersonalSection() {
 
     if (relation === 'Myself') {
 
-      text +=
+      text =
         'MY EXPERIENCE\n\n' +
+
         'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
 
         'I would like to try ' +
@@ -1109,8 +1226,9 @@ function buildPersonalSection() {
 
     } else {
 
-      text +=
+      text =
         'MY EXPERIENCE\n\n' +
+
         'This issue has directly affected me or someone I care about, and I wanted to share my experience with you.\n\n' +
 
         relation +
@@ -1141,7 +1259,7 @@ function buildPersonalSection() {
     const whyAccessImportant =
       valueOf('whyAccessImportant');
 
-    text +=
+    text =
       'MY PERSPECTIVE\n\n' +
 
       'I have not personally used or tried to access a micronutrient supplement, but I believe these products should be more accessible in New Zealand.\n\n' +
@@ -1183,6 +1301,24 @@ function buildEmail() {
     );
   }
 
+
+  /*
+   * If the MP list has somehow come from an old cached
+   * backend response, don't create a live email using
+   * incomplete MP information.
+   */
+
+  if (
+    !TEST_MODE &&
+    !mp.email
+  ) {
+
+    throw new Error(
+      'The MP contact details have not loaded correctly. Please refresh the page and try again.'
+    );
+  }
+
+
   const name =
     valueOf('name');
 
@@ -1192,6 +1328,7 @@ function buildEmail() {
   let toAddress;
   let ccAddress;
   let subject;
+
 
   if (TEST_MODE) {
 
@@ -1221,8 +1358,13 @@ function buildEmail() {
   }
 
 
+  const greetingName =
+    mp.firstName ||
+    'there';
+
+
   const body =
-`Kia ora ${mp.firstName},
+`Kia ora ${greetingName},
 
 My name is ${name}. I am writing to you as my local electorate MP about barriers to accessing micronutrient supplements in New Zealand.
 
@@ -1251,7 +1393,7 @@ Kind regards,
 ${name}`;
 
 
-  const mailto =
+  return (
     'mailto:' +
     encodeURIComponent(toAddress) +
     '?cc=' +
@@ -1259,10 +1401,8 @@ ${name}`;
     '&subject=' +
     encodeURIComponent(subject) +
     '&body=' +
-    encodeURIComponent(body);
-
-
-  return mailto;
+    encodeURIComponent(body)
+  );
 }
 
 
@@ -1280,9 +1420,6 @@ document
 
     const form =
       this;
-
-    const button =
-      document.getElementById('submitButton');
 
     const status =
       document.getElementById('status');
@@ -1306,29 +1443,20 @@ document
 
 
       /*
-      Submit a copy to Google Sheets in the hidden iframe.
-      We do not wait for Apps Script to respond.
-      */
-
-      const originalTarget =
-        form.target;
-
-      form.target =
-        'submissionFrame';
-
+       * Save response to Google Sheet.
+       *
+       * We deliberately do NOT wait for Apps Script to
+       * respond before showing the email button.
+       */
 
       HTMLFormElement.prototype.submit.call(
         form
       );
 
 
-      form.target =
-        originalTarget;
-
-
       /*
-      Immediately make the prepared email available.
-      */
+       * Prepare email immediately.
+       */
 
       openEmailButton.href =
         mailto;
@@ -1350,6 +1478,11 @@ document
 
 
     } catch (error) {
+
+      emailReady.classList.add(
+        'hidden'
+      );
+
 
       status.textContent =
         error.message ||
