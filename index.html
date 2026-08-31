@@ -250,9 +250,10 @@
     <strong>We are asking MPs to support changes that would improve access to
     micronutrient supplements in New Zealand</strong>, including revision of the
     Dietary Supplements Regulations 1985, increasing or removing outdated
-    restrictions on permitted nutrient doses, and enabling effective supplements
-    to be considered for Pharmac funding without first requiring classification
-    as medicines.
+    restrictions on permitted nutrient doses, allowing evidence-based supplements
+    to be used for therapeutic purposes without automatically requiring
+    classification as medicines, and enabling effective supplements to be
+    considered for Pharmac funding.
   </p>
 
   <p>
@@ -735,9 +736,7 @@ document
       });
 
 
-      if (
-        this.value.startsWith('Previously used')
-      ) {
+      if (this.value.startsWith('Previously used')) {
 
         usedSection.classList.remove('hidden');
 
@@ -745,11 +744,7 @@ document
           field.required = true;
         });
 
-      }
-
-      else if (
-        this.value.startsWith('Would like to try')
-      ) {
+      } else if (this.value.startsWith('Would like to try')) {
 
         wantSection.classList.remove('hidden');
 
@@ -757,11 +752,7 @@ document
           field.required = true;
         });
 
-      }
-
-      else if (
-        this.value.startsWith('I have not personally used')
-      ) {
+      } else if (this.value.startsWith('I have not personally used')) {
 
         supportSection.classList.remove('hidden');
 
@@ -799,10 +790,7 @@ function receiveMpOptions(mps) {
     mps
       .map(function(mp) {
 
-        if (
-          mp &&
-          typeof mp === 'object'
-        ) {
+        if (mp && typeof mp === 'object') {
 
           return {
 
@@ -887,9 +875,7 @@ loadMpOptions();
 function valueOf(name) {
 
   const field =
-    document.querySelector(
-      '[name="' + name + '"]'
-    );
+    document.querySelector('[name="' + name + '"]');
 
   return field
     ? field.value.trim()
@@ -981,9 +967,7 @@ function buildPersonalSection() {
     getRelation();
 
   const product =
-    productForEmail(
-      getProduct()
-    );
+    productForEmail(getProduct());
 
   const situation =
     checkedValue('situation');
@@ -993,10 +977,6 @@ function buildPersonalSection() {
 
   let text = '';
 
-
-  /* -----------------------------------------------------
-     PREVIOUSLY USED – CAN NO LONGER ACCESS
-  ----------------------------------------------------- */
 
   if (
     situation ===
@@ -1068,10 +1048,6 @@ function buildPersonalSection() {
   }
 
 
-  /* -----------------------------------------------------
-     PREVIOUSLY USED – ACCESS MORE DIFFICULT
-  ----------------------------------------------------- */
-
   else if (
     situation ===
     'Previously used a micronutrient supplement and can still access it, but access has become more difficult'
@@ -1142,10 +1118,6 @@ function buildPersonalSection() {
   }
 
 
-  /* -----------------------------------------------------
-     WOULD LIKE TO TRY
-  ----------------------------------------------------- */
-
   else if (
     situation ===
     'Would like to try a micronutrient supplement but access has been difficult or impossible'
@@ -1194,10 +1166,6 @@ function buildPersonalSection() {
   }
 
 
-  /* -----------------------------------------------------
-     SUPPORTER / GENERAL PERSPECTIVE
-  ----------------------------------------------------- */
-
   else if (
     situation ===
     'I have not personally used or tried to access a micronutrient supplement, but I believe they should be more accessible in New Zealand'
@@ -1216,10 +1184,6 @@ function buildPersonalSection() {
       whyAccessImportant;
   }
 
-
-  /* -----------------------------------------------------
-     OPTIONAL ADDITIONAL INFORMATION
-  ----------------------------------------------------- */
 
   if (anythingElse) {
 
@@ -1319,6 +1283,8 @@ This creates significant barriers to access and funding. Formulations that fall 
 
 This means an intervention recommended by Pharmac's own clinical advisory committee remains ineligible for public funding because of its regulatory classification rather than its evidence base.
 
+The current framework also prevents supplements from being used for therapeutic purposes without bringing them under medicines regulation. The legislation should provide a proportionate pathway for evidence-based supplements to be used therapeutically without automatically requiring them to be classified as medicines.
+
 ${personalSection}
 
 WHAT YOU CAN DO TO HELP
@@ -1327,6 +1293,7 @@ I am asking you, as my electorate MP, to support changes that would remove these
 
 - Revise the Dietary Supplements Regulations 1985.
 - Increase or remove outdated maximum permitted doses for micronutrients where appropriate.
+- Allow evidence-based supplements to be used for therapeutic purposes without automatically requiring classification as medicines.
 - Create a pathway to Pharmac funding that does not require effective micronutrient supplements to first be classified as medicines.
 
 I also ask you to raise these issues with the relevant Ministers and officials and support regulation that reflects current scientific evidence and is proportionate to actual risk.
@@ -1482,6 +1449,10 @@ This means an intervention recommended by Pharmac's own clinical advisory commit
 </strong>
 </p>
 
+<p>
+The current framework also prevents supplements from being used for therapeutic purposes without bringing them under medicines regulation. The legislation should provide a proportionate pathway for evidence-based supplements to be used therapeutically without automatically requiring them to be classified as medicines.
+</p>
+
 ${personalHtml}
 
 <p>
@@ -1495,6 +1466,7 @@ I am asking you, as my electorate MP, to support changes that would remove these
 <ul>
   <li>Revise the Dietary Supplements Regulations 1985.</li>
   <li>Increase or remove outdated maximum permitted doses for micronutrients where appropriate.</li>
+  <li>Allow evidence-based supplements to be used for therapeutic purposes without automatically requiring classification as medicines.</li>
   <li>Create a pathway to Pharmac funding that does not require effective micronutrient supplements to first be classified as medicines.</li>
 </ul>
 
@@ -1728,9 +1700,7 @@ document
         this;
 
 
-      if (
-        !form.reportValidity()
-      ) {
+      if (!form.reportValidity()) {
         return;
       }
 
@@ -1836,12 +1806,8 @@ document
 
         emailReady
           .scrollIntoView({
-
-            behavior:
-              'smooth',
-
-            block:
-              'start'
+            behavior: 'smooth',
+            block: 'start'
           });
 
       } catch (error) {
