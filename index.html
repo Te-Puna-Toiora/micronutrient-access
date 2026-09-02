@@ -1474,6 +1474,10 @@ ${escapeHtml(data.name)}
 
 function buildMailto(data) {
 
+  const mailtoBody =
+    data.body
+      .replace(/\r?\n/g, '\r\n');
+
   return (
     'mailto:' +
     encodeURIComponent(data.to) +
@@ -1482,7 +1486,7 @@ function buildMailto(data) {
     '&subject=' +
     encodeURIComponent(data.subject) +
     '&body=' +
-    encodeURIComponent(data.body)
+    encodeURIComponent(mailtoBody)
   );
 }
 
